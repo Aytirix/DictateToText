@@ -78,6 +78,9 @@ class HistoryWindow:
 		# Start stats updates
 		self.update_stats()
 
+		# Load history content
+		self.update_content()
+
 	def _setup_ui(self, cfg) -> None:
 		"""Setup the modern user interface"""
 		self.update_title()

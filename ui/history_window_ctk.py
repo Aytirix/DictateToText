@@ -52,7 +52,7 @@ def _enable_mousewheel_scroll(widget):
 class HistoryWindow:
 	"""Modern history window with CustomTkinter"""
 
-	def __init__(self, history_manager: 'HistoryManager', worker: 'TranscriptionWorker'):
+	def __init__(self, root, history_manager: 'HistoryManager', worker: 'TranscriptionWorker'):
 		self.history_manager = history_manager
 		self.worker = worker
 
@@ -64,11 +64,9 @@ class HistoryWindow:
 		# Charger config
 		cfg = config.get_config_instance()
 
-		# Configurer thème CustomTkinter
-		ctk.set_appearance_mode(cfg.get("theme_mode", "dark"))
-		ctk.set_default_color_theme(cfg.get("accent_color", "blue"))
-
-		self.window = ctk.CTk()
+		self.window = ctk.CTkToplevel(root)
+		self.window.after(50, self.window.lift)
+		self.window.after(50, self.window.focus_force)
 		self._setup_ui(cfg)
 
 		# Attach as observer
@@ -921,7 +919,3 @@ class HistoryWindow:
 		"""Handle window close"""
 		self.stop_realtime_logs()
 		self.window.destroy()
-
-	def run(self) -> None:
-		"""Start main loop"""
-		self.window.mainloop()

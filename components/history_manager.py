@@ -7,7 +7,7 @@ class HistoryManager:
 	"""Manage transcription history"""
 
 	def __init__(self):
-		self.items = config.get_history()
+		self.items = list(config.get_history())  # copy, don't hold reference
 		self._max_size = config.get_history_size()
 		self._observers = []
 
@@ -19,7 +19,7 @@ class HistoryManager:
 
 		self.items.append(text)
 		if len(self.items) > self._max_size:
-			self.items = self.items[-self._max_size:]
+			self.items[:] = self.items[-self._max_size:]
 
 		config.save_history(self.items)
 		self._notify_observers()
@@ -29,7 +29,7 @@ class HistoryManager:
 		if config.set_history_size(size):
 			self._max_size = size
 			if len(self.items) > size:
-				self.items = self.items[-size:]
+				self.items[:] = self.items[-size:]
 				config.save_history(self.items)
 			self._notify_observers()
 			return True
@@ -39,15 +39,21 @@ class HistoryManager:
 		"""Attach an observer to be notified of changes"""
 		self._observers.append(observer)
 
+	def detach_observer(self, observer) -> None:
+		"""Detach an observer"""
+		self._observers = [o for o in self._observers if o is not observer]
+
 	def _notify_observers(self) -> None:
 		"""Notify all observers of changes"""
+		dead = []
 		for observer in self._observers:
-			if hasattr(observer, 'update_content'):
-				# Use window.after() to run in main thread
-				if hasattr(observer, 'window'):
-					try:
+			if hasattr(observer, 'update_content') and hasattr(observer, 'window'):
+				try:
+					if observer.window.winfo_exists():
 						observer.window.after(0, observer.update_content)
-					except:
-						pass  # Window might not exist yet
-				else:
-					observer.update_content()
+					else:
+						dead.append(observer)
+				except Exception:
+					dead.append(observer)
+		for obs in dead:
+			self._observers.remove(obs)

@@ -1,6 +1,7 @@
 """Audio recording component"""
 
 import time
+import threading
 from typing import Optional
 
 import numpy as np
@@ -17,6 +18,7 @@ class AudioRecorder:
 		self.config = cfg
 		self._recording = False
 		self._frames = []
+		self._lock = threading.Lock()
 		self._stream = None
 
 	def start_stream(self) -> None:
@@ -35,17 +37,17 @@ class AudioRecorder:
 	def _audio_callback(self, indata, frames_count, time_info, status):
 		"""Audio callback for recording"""
 		if self._recording:
-			self._frames.append(indata.copy())
+			with self._lock:
+				self._frames.append(indata.copy())
 
 	def start_recording(self) -> bool:
 		"""Start recording audio"""
 		if self._recording:
-			print("⚠️  Enregistrement en cours annulé!", flush=True)
-			self._recording = False
-			self._frames = []
+			# Already recording — ignore, don't cancel
 			return False
 
-		self._frames = []
+		with self._lock:
+			self._frames = []
 		self._recording = True
 		print("🎙️  REC (Copilot maintenu)...", flush=True)
 		return True
@@ -54,13 +56,15 @@ class AudioRecorder:
 		"""Stop recording and save to file"""
 		self._recording = False
 
-		if not self._frames:
-			print("⏹️  Stop (rien).", flush=True)
-			return None
+		with self._lock:
+			if not self._frames:
+				print("⏹️  Stop (rien).", flush=True)
+				return None
+			audio = np.concatenate(self._frames, axis=0)
+			self._frames = []
 
 		import config
 		cfg = config.get_config_instance()
-		audio = np.concatenate(self._frames, axis=0)
 		timestamp = int(time.time() * 1000)
 
 		# Determine save location

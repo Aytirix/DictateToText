@@ -1,5 +1,6 @@
 """Clipboard service"""
 
+import os
 import subprocess
 
 from .notification import NotificationService
@@ -16,13 +17,16 @@ class ClipboardService:
 			return False
 
 		try:
-			proc = subprocess.Popen(["wl-copy"],
-			                        stdin=subprocess.PIPE,
-			                        stdout=subprocess.DEVNULL,
-			                        stderr=subprocess.DEVNULL,
-			                        text=True)
-			proc.stdin.write(text)
-			proc.stdin.close()
+			env = os.environ.copy()
+			# Ensure Wayland env vars are set for systemd context
+			if "WAYLAND_DISPLAY" not in env:
+				env["WAYLAND_DISPLAY"] = "wayland-1"
+			if "XDG_RUNTIME_DIR" not in env:
+				env["XDG_RUNTIME_DIR"] = f"/run/user/{os.getuid()}"
+
+			# wl-copy must stay alive in the background to serve the Wayland
+			# clipboard — do NOT wait for it to finish.
+			subprocess.Popen(["wl-copy", text], env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 			print("📋 Texte copié dans le presse-papiers!", flush=True)
 			NotificationService.send("Dictate PTT Copilot", "✅ Texte copié dans le presse-papiers")

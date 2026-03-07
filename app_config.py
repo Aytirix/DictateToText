@@ -23,17 +23,27 @@ class AppConfig:
 	history_combo: Set[int] = None
 
 	def __post_init__(self):
-		if self.copilot_combo is None:
-			self.copilot_combo = {ecodes.KEY_LEFTMETA, ecodes.KEY_LEFTSHIFT, ecodes.KEY_F23}
-		if self.history_combo is None:
-			self.history_combo = {ecodes.KEY_LEFTCTRL, ecodes.KEY_LEFTSHIFT, ecodes.KEY_H}
-
 		# Load from config
 		cfg = cfg_module.get_config_instance()
+
+		# Combos from config (convert string key names to evdev codes)
+		record_keys = cfg.get("record_combo", ["KEY_LEFTMETA", "KEY_LEFTSHIFT", "KEY_F23"])
+		history_keys = cfg.get("history_combo", ["KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_H"])
+		self.copilot_combo = {getattr(ecodes, k, None) for k in record_keys} - {None}
+		self.history_combo = {getattr(ecodes, k, None) for k in history_keys} - {None}
+
+		# Fallback if config keys were invalid
+		if not self.copilot_combo:
+			self.copilot_combo = {ecodes.KEY_LEFTMETA, ecodes.KEY_LEFTSHIFT, ecodes.KEY_F23}
+		if not self.history_combo:
+			self.history_combo = {ecodes.KEY_LEFTCTRL, ecodes.KEY_LEFTSHIFT, ecodes.KEY_H}
+
+		self.input_event = cfg.get("input_event", "/dev/input/event3")
 		self.whisper_path = os.path.expanduser(cfg.get("whisper_path", "~/Documents/tools/whisper.cpp"))
 		model_name = cfg.get("whisper_model", "large-v3")
 		self.language = cfg.get("language", "fr")
 		self.sample_rate = cfg.get("sample_rate", 16000)
+		self.channels = cfg.get("channels", 1)
 
 		# Build paths
 		self.whisper_bin = os.path.join(self.whisper_path, "build/bin/whisper-cli")

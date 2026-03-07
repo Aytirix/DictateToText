@@ -3,6 +3,8 @@
 import signal
 from threading import Thread
 
+import customtkinter as ctk
+
 from app_config import AppConfig
 from services import NotificationService, ClipboardService, TranscriptionService
 from components import AudioRecorder, HistoryManager, KeyboardHandler, TranscriptionWorker
@@ -26,9 +28,12 @@ class DictatePTTApplication:
 		self.worker = TranscriptionWorker(self.transcription_service, self.history_manager, self.clipboard_service)
 		self.keyboard_handler = KeyboardHandler(cfg)
 
-		# State
+		# Tkinter root (hidden) — must be unique, created in main thread
+		self._root = None
 		self._history_window = None
 		self._history_window_open = False
+
+		# Keyboard state
 		self._was_copilot_down = False
 		self._was_history_down = False
 
@@ -51,68 +56,78 @@ class DictatePTTApplication:
 		print("Historique: Ctrl+Shift+H")
 		print()
 
-		# Main event loop
+		# Create hidden Tkinter root in main thread
+		import config as cfg_module
+		cfg_obj = cfg_module.get_config_instance()
+		ctk.set_appearance_mode(cfg_obj.get("theme_mode", "dark"))
+		ctk.set_default_color_theme(cfg_obj.get("accent_color", "blue"))
+		self._root = ctk.CTk()
+		self._root.withdraw()  # Hide root window
+
+		# Start keyboard listener in daemon thread
+		kbd_thread = Thread(target=self._event_loop, daemon=True)
+		kbd_thread.start()
+
+		# Main thread runs Tkinter mainloop
 		try:
-			self._event_loop()
+			self._root.mainloop()
 		except KeyboardInterrupt:
 			self._shutdown()
 
 	def _event_loop(self) -> None:
-		"""Main keyboard event loop"""
-		for _ in self.keyboard_handler.read_events():
-			# Check history combo
-			history_down = self.keyboard_handler.is_history_combo_pressed()
-			if history_down and not self._was_history_down:
-				self._show_history()
-			self._was_history_down = history_down
+		"""Keyboard event loop (runs in daemon thread)"""
+		try:
+			for _ in self.keyboard_handler.read_events():
+				# Check history combo
+				history_down = self.keyboard_handler.is_history_combo_pressed()
+				if history_down and not self._was_history_down:
+					# Schedule window creation on main (Tkinter) thread
+					self._root.after(0, self._show_history)
+				self._was_history_down = history_down
 
-			# Check copilot combo (recording)
-			copilot_down = self.keyboard_handler.is_copilot_combo_pressed()
+				# Check copilot combo (recording)
+				copilot_down = self.keyboard_handler.is_copilot_combo_pressed()
 
-			# Start recording
-			if copilot_down and not self._was_copilot_down:
-				if self.worker.is_transcribing():
-					print("⚠️  Conversion en cours, patientez...", flush=True)
-					self.notification_service.send("Dictate PTT Copilot", "Conversion en cours, patientez...")
-				else:
-					self.recorder.start_recording()
+				# Start recording
+				if copilot_down and not self._was_copilot_down:
+					if self.worker.is_transcribing():
+						print("⚠️  Conversion en cours, patientez...", flush=True)
+						self.notification_service.send("Dictate PTT Copilot", "Conversion en cours, patientez...")
+					else:
+						self.recorder.start_recording()
 
-			# Stop recording
-			if not copilot_down and self._was_copilot_down and self.recorder.is_recording:
-				wav_file = self.recorder.stop_recording()
-				if wav_file:
-					self.worker.submit(wav_file)
+				# Stop recording
+				if not copilot_down and self._was_copilot_down and self.recorder.is_recording:
+					wav_file = self.recorder.stop_recording()
+					if wav_file:
+						self.worker.submit(wav_file)
 
-			self._was_copilot_down = copilot_down
+				self._was_copilot_down = copilot_down
+		except Exception as e:
+			print(f"❌ Erreur boucle clavier: {e}", flush=True)
 
 	def _show_history(self) -> None:
-		"""Show or focus history window"""
+		"""Show or focus history window (called on main thread)"""
 		if self._history_window_open and self._history_window:
 			try:
 				self._history_window.focus()
-			except:
-				# Window was closed externally
+				return
+			except Exception:
 				self._history_window_open = False
 				self._history_window = None
 
 		if not self._history_window_open:
+			self._history_window = HistoryWindow(self._root, self.history_manager, self.worker)
+			self._history_window_open = True
 
-			def create_window():
-				self._history_window = HistoryWindow(self.history_manager, self.worker)
-				self._history_window_open = True
+			original_close = self._history_window.on_close
 
-				# Callback when window closes
-				original_close = self._history_window.on_close
+			def on_close_wrapper():
+				self._history_window_open = False
+				self._history_window = None
+				original_close()
 
-				def on_close_wrapper():
-					self._history_window_open = False
-					self._history_window = None
-					original_close()
-
-				self._history_window.on_close = on_close_wrapper
-				self._history_window.run()
-
-			Thread(target=create_window, daemon=True).start()
+			self._history_window.on_close = on_close_wrapper
 
 	def _shutdown(self, *args) -> None:
 		"""Shutdown application"""
@@ -121,9 +136,16 @@ class DictatePTTApplication:
 		# Close history window if open
 		if self._history_window_open and self._history_window:
 			try:
-				self._history_window.window.quit()
 				self._history_window.window.destroy()
-			except:
+			except Exception:
+				pass
+
+		# Stop Tkinter mainloop
+		if self._root:
+			try:
+				self._root.quit()
+				self._root.destroy()
+			except Exception:
 				pass
 
 		try:

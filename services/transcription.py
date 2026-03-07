@@ -2,6 +2,7 @@
 
 import subprocess
 
+import config as cfg_module
 from app_config import AppConfig
 
 
@@ -13,69 +14,44 @@ class TranscriptionService:
 
 	def transcribe(self, wav_path: str) -> str:
 		"""Transcribe audio file using Whisper"""
+		cfg = cfg_module.get_config_instance()
+
 		cmd = [self.config.whisper_bin, "-m", self.config.whisper_model, "-f", wav_path, "-nt"]
 		if self.config.language != "auto":
 			cmd += ["-l", self.config.language]
 
-		result = subprocess.run(cmd, capture_output=True, text=True)
-		output = (result.stdout or "") + "\n" + (result.stderr or "")
+		# Beam size
+		beam_size = cfg.get("beam_size", 5)
+		cmd += ["-bs", str(beam_size)]
 
-		return self._clean_output(output)
+		# Initial prompt (very useful for French vocabulary)
+		initial_prompt = cfg.get("initial_prompt", "")
+		if initial_prompt:
+			cmd += ["--prompt", initial_prompt]
+
+		# Translate mode
+		if cfg.get("task", "transcribe") == "translate":
+			cmd += ["-tr"]
+
+		try:
+			result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+		except subprocess.TimeoutExpired:
+			print("❌ Timeout whisper-cli (120s)", flush=True)
+			return ""
+
+		if result.returncode != 0:
+			print(f"❌ whisper-cli erreur (code {result.returncode}): {result.stderr[:200]}", flush=True)
+
+		# Use only stdout for text — stderr contains logs
+		return self._clean_output(result.stdout or "")
 
 	@staticmethod
 	def _clean_output(output: str) -> str:
-		"""Clean Whisper output from logs and metadata"""
-		bad_prefixes = (
-		    "whisper_",
-		    "ggml_",
-		    "main:",
-		    "system_info:",
-		    "processing",
-		    "Processing",
-		    "whisper_print_timings",
-		    "load time",
-		    "total time",
-		    "fallbacks",
-		    "Device ",
-		    "device ",
-		    "compute capability",
-		    "found ",
-		    "backends",
-		    "CUDA",
-		    "whisper_init",
-		    "whisper_model_load",
-		    "whisper_backend",
-		    "kv ",
-		    "mel time",
-		    "sample time",
-		    "encode time",
-		    "decode time",
-		    "batchd time",
-		    "prompt time",
-		)
-
-		bad_contains = (
-		    "compute capability",
-		    "VMM:",
-		    "CUDA devices",
-		    "GGML_CUDA",
-		    "OPENVINO",
-		    "COREML",
-		    "SSE",
-		    "AVX",
-		    "OPENMP",
-		    "BLACKWELL",
-		    "PEER_MAX_BATCH_SIZE",
-		)
-
+		"""Clean Whisper output"""
 		lines = []
 		for line in output.splitlines():
 			s = line.strip()
 			if not s:
-				continue
-			if s.startswith(bad_prefixes):
-				continue
-			if any(x in s for x in bad_contains):
 				continue
 
 			# Remove timestamp [..]
@@ -83,7 +59,7 @@ class TranscriptionService:
 				s = s.split("]", 1)[-1].strip()
 
 			# Keep only lines with text
-			if any(ch.isalpha() for ch in s):
+			if s and any(ch.isalpha() for ch in s):
 				lines.append(s)
 
 		return "\n".join(lines).strip()

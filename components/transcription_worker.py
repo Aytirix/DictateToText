@@ -80,6 +80,6 @@ class TranscriptionWorker:
 				if not cfg.get("save_audio_files", False):
 					try:
 						os.remove(wav_file)
-					except:
+					except OSError:
 						pass
 				self._queue.task_done()

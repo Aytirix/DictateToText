@@ -75,6 +75,9 @@ class HistoryWindow:
 		# Schedule status updates
 		self.schedule_update()
 
+		# Start stats updates
+		self.update_stats()
+
 	def _setup_ui(self, cfg) -> None:
 		"""Setup the modern user interface"""
 		self.update_title()
@@ -353,7 +356,7 @@ class HistoryWindow:
 			_enable_mousewheel_scroll(self.audio_list_frame)
 
 			# Initial load
-		self._refresh_audio_list()
+			self._refresh_audio_list()
 
 	def _on_search(self, event=None):
 		"""Handle search"""
@@ -413,10 +416,8 @@ class HistoryWindow:
 		"""Clear all history with confirmation"""
 		from tkinter import messagebox
 
-		if messagebox.askyesno("Confirmation", "Voulez-vous vraiment vider tout l'historique ?"):
-			self.history_manager.items.clear()
-			config.save_history([])
-			self.update_content()
+		if messagebox.askyesno("Confirmation", "Voulez-vous vraiment vider tout l'historique ?", parent=self.window):
+			self.history_manager.clear()
 
 	def schedule_update(self) -> None:
 		"""Schedule periodic status updates"""
@@ -438,7 +439,7 @@ class HistoryWindow:
 		self.text_widget.configure(state="normal")
 		self.text_widget.delete("1.0", "end")
 
-		items = self.history_manager.items
+		items = self.history_manager.get_items()
 
 		# Filter if searching
 		if search_query:
@@ -449,9 +450,7 @@ class HistoryWindow:
 			self.text_widget.insert("1.0", f"\n\n          {empty_text}\n\n")
 		else:
 			for i, text in enumerate(reversed(items), 1):
-				# Numéro avec style
-				self.text_widget.insert("end", f"{i:2}. ", "number")
-				self.text_widget.insert("end", f"{text}\n\n", "content")
+				self.text_widget.insert("end", f"{i:2}. {text}\n\n")
 
 		self.text_widget.configure(state="disabled")
 		self.update_status()
@@ -912,10 +911,18 @@ class HistoryWindow:
 
 	def open_config(self) -> None:
 		"""Open settings window"""
+		if hasattr(self, '_settings_window') and self._settings_window:
+			try:
+				self._settings_window.window.lift()
+				self._settings_window.window.focus_force()
+				return
+			except Exception:
+				self._settings_window = None
 		from .settings_window_ctk import SettingsWindow
-		SettingsWindow(self.window, self)
+		self._settings_window = SettingsWindow(self.window, self)
 
 	def on_close(self) -> None:
 		"""Handle window close"""
 		self.stop_realtime_logs()
+		self.history_manager.detach_observer(self)
 		self.window.destroy()

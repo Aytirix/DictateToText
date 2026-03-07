@@ -5,6 +5,7 @@ from threading import Thread
 
 import customtkinter as ctk
 
+import config as cfg_module
 from app_config import AppConfig
 from services import NotificationService, ClipboardService, TranscriptionService
 from components import AudioRecorder, HistoryManager, KeyboardHandler, TranscriptionWorker
@@ -20,7 +21,7 @@ class DictatePTTApplication:
 		# Initialize services
 		self.notification_service = NotificationService()
 		self.clipboard_service = ClipboardService()
-		self.transcription_service = TranscriptionService(cfg)
+		self.transcription_service = TranscriptionService()
 		self.history_manager = HistoryManager()
 
 		# Initialize components
@@ -88,19 +89,33 @@ class DictatePTTApplication:
 				# Check copilot combo (recording)
 				copilot_down = self.keyboard_handler.is_copilot_combo_pressed()
 
-				# Start recording
-				if copilot_down and not self._was_copilot_down:
-					if self.worker.is_transcribing():
-						print("⚠️  Conversion en cours, patientez...", flush=True)
-						self.notification_service.send("Dictate PTT Copilot", "Conversion en cours, patientez...")
-					else:
-						self.recorder.start_recording()
+				recording_mode = cfg_module.get_config_instance().get("recording_mode", "push_to_talk")
 
-				# Stop recording
-				if not copilot_down and self._was_copilot_down and self.recorder.is_recording:
-					wav_file = self.recorder.stop_recording()
-					if wav_file:
-						self.worker.submit(wav_file)
+				if recording_mode == "toggle":
+					# Toggle mode: press once to start, press again to stop
+					if copilot_down and not self._was_copilot_down:
+						if self.recorder.is_recording:
+							wav_file = self.recorder.stop_recording()
+							if wav_file:
+								self.worker.submit(wav_file)
+						elif self.worker.is_transcribing():
+							print("⚠️  Conversion en cours, patientez...", flush=True)
+							self.notification_service.send("Dictate PTT Copilot", "Conversion en cours, patientez...")
+						else:
+							self.recorder.start_recording()
+				else:
+					# Push-to-talk mode (default): hold to record, release to stop
+					if copilot_down and not self._was_copilot_down:
+						if self.worker.is_transcribing():
+							print("⚠️  Conversion en cours, patientez...", flush=True)
+							self.notification_service.send("Dictate PTT Copilot", "Conversion en cours, patientez...")
+						else:
+							self.recorder.start_recording()
+
+					if not copilot_down and self._was_copilot_down and self.recorder.is_recording:
+						wav_file = self.recorder.stop_recording()
+						if wav_file:
+							self.worker.submit(wav_file)
 
 				self._was_copilot_down = copilot_down
 		except Exception as e:

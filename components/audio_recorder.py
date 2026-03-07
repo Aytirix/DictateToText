@@ -1,13 +1,16 @@
 """Audio recording component"""
 
+import os
 import time
 import threading
+from pathlib import Path
 from typing import Optional
 
 import numpy as np
 import sounddevice as sd
 import soundfile as sf
 
+import config as cfg_module
 from app_config import AppConfig
 
 
@@ -33,6 +36,7 @@ class AudioRecorder:
 		"""Stop audio input stream"""
 		if self._stream:
 			self._stream.close()
+			self._stream = None
 
 	def _audio_callback(self, indata, frames_count, time_info, status):
 		"""Audio callback for recording"""
@@ -63,14 +67,11 @@ class AudioRecorder:
 			audio = np.concatenate(self._frames, axis=0)
 			self._frames = []
 
-		import config
-		cfg = config.get_config_instance()
+		cfg = cfg_module.get_config_instance()
 		timestamp = int(time.time() * 1000)
 
 		# Determine save location
 		if cfg.get("save_audio_files", False):
-			import os
-			from pathlib import Path
 			audio_dir = Path(cfg.get("audio_temp_dir", "~/Documents/tools/py/audio_temp")).expanduser()
 			audio_dir.mkdir(parents=True, exist_ok=True)
 			wav_file = str(audio_dir / f"dictate_ptt_{timestamp}.wav")

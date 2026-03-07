@@ -1,24 +1,25 @@
 """Transcription service using Whisper"""
 
+import os
 import subprocess
 
 import config as cfg_module
-from app_config import AppConfig
 
 
 class TranscriptionService:
 	"""Handle Whisper transcription"""
 
-	def __init__(self, cfg: AppConfig):
-		self.config = cfg
-
 	def transcribe(self, wav_path: str) -> str:
 		"""Transcribe audio file using Whisper"""
 		cfg = cfg_module.get_config_instance()
 
-		cmd = [self.config.whisper_bin, "-m", self.config.whisper_model, "-f", wav_path, "-nt"]
-		if self.config.language != "auto":
-			cmd += ["-l", self.config.language]
+		whisper_bin = os.path.expanduser(cfg.get("whisper_bin", "whisper-cli"))
+		whisper_model = os.path.expanduser(cfg.get("whisper_model", "large-v3"))
+		language = cfg.get("language", "fr")
+
+		cmd = [whisper_bin, "-m", whisper_model, "-f", wav_path, "-nt"]
+		if language != "auto":
+			cmd += ["-l", language]
 
 		# Beam size
 		beam_size = cfg.get("beam_size", 5)
@@ -33,10 +34,11 @@ class TranscriptionService:
 		if cfg.get("task", "transcribe") == "translate":
 			cmd += ["-tr"]
 
+		timeout = cfg.get("whisper_timeout", 120)
 		try:
-			result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+			result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
 		except subprocess.TimeoutExpired:
-			print("❌ Timeout whisper-cli (120s)", flush=True)
+			print(f"❌ Timeout whisper-cli ({timeout}s)", flush=True)
 			return ""
 
 		if result.returncode != 0:

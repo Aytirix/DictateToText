@@ -13,7 +13,7 @@ DEFAULT_CONFIG = {
     "theme_mode": "dark",  # "dark", "light", "system"
     "accent_color": "blue",  # "blue", "green", "red", "violet", "orange"
     "window_opacity": 1.0,
-    "font_family": "Segoe UI",
+    "font_family": "Sans",
     "font_size": 12,
     "animations_enabled": True,
     "corner_radius": 10,

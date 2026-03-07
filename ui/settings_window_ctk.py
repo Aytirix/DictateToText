@@ -89,8 +89,8 @@ class SettingsWindow:
 		    ("🎨 Interface", "Interface"),
 		    ("🎙️ Audio", "Audio"),
 		    ("🤖 Whisper", "Whisper"),
-		    ("� Modèles", "Modeles"),
-		    ("�📝 Historique", "Historique"),
+		    ("📦 Modèles", "Modeles"),
+		    ("📝 Historique", "Historique"),
 		    ("🔔 Notifications", "Notifications"),
 		    ("🔧 Comportement", "Comportement"),
 		    ("🐛 Debug", "Debug"),
@@ -116,9 +116,6 @@ class SettingsWindow:
 
 		# Initialize all variables
 		self._init_variables()
-
-		# Show first category
-		self._switch_category("Interface")
 
 		# Show first category
 		self._switch_category("Interface")
@@ -162,9 +159,6 @@ class SettingsWindow:
 		                          font=ctk.CTkFont(size=13, weight="bold"))
 		apply_btn.pack(side="left", padx=8)
 
-	def _init_variables(self):
-		"""Initialize all configuration variables"""
-		# Interface
 	def _init_variables(self):
 		"""Initialize all configuration variables"""
 		# Interface
@@ -241,8 +235,6 @@ class SettingsWindow:
 			self._show_notification_settings()
 		elif category == "Comportement":
 			self._show_behavior_settings()
-		elif category == "Debug":
-			self._show_debug_settings()
 		elif category == "Debug":
 			self._show_debug_settings()
 
@@ -502,9 +494,9 @@ class SettingsWindow:
 
 			try:
 				if not os.path.exists(download_script):
-					messagebox.showerror("Erreur",
-					                     f"Script de téléchargement introuvable:\\n{download_script}",
-					                     parent=self.window)
+					self.window.after(0, lambda: messagebox.showerror("Erreur",
+					                     f"Script de téléchargement introuvable:\n{download_script}",
+					                     parent=self.window))
 					return
 
 				result = subprocess.run(["bash", download_script, model_name],
@@ -514,16 +506,22 @@ class SettingsWindow:
 				                        timeout=600)
 
 				if result.returncode == 0:
-					messagebox.showinfo("Téléchargement réussi",
-					                    f"✓ Modèle {model_name} téléchargé avec succès !",
-					                    parent=self.window)
-					self._show_models_settings()  # Refresh
+					self.window.after(0, lambda: [
+					    messagebox.showinfo("Téléchargement réussi",
+					                        f"✓ Modèle {model_name} téléchargé avec succès !",
+					                        parent=self.window),
+					    self._show_models_settings()
+					])
 				else:
-					messagebox.showerror("Erreur", f"Échec du téléchargement:\\n{result.stderr}", parent=self.window)
+					self.window.after(0, lambda: messagebox.showerror("Erreur",
+					                     f"Échec du téléchargement:\n{result.stderr}",
+					                     parent=self.window))
 			except subprocess.TimeoutExpired:
-				messagebox.showerror("Erreur", "Timeout du téléchargement", parent=self.window)
+				self.window.after(0, lambda: messagebox.showerror("Erreur",
+				                     "Timeout du téléchargement", parent=self.window))
 			except Exception as e:
-				messagebox.showerror("Erreur", f"Erreur: {e}", parent=self.window)
+				self.window.after(0, lambda: messagebox.showerror("Erreur",
+				                     f"Erreur: {e}", parent=self.window))
 
 		# Show progress message
 		messagebox.showinfo(

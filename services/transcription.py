@@ -14,7 +14,9 @@ class TranscriptionService:
 		cfg = cfg_module.get_config_instance()
 
 		whisper_bin = os.path.expanduser(cfg.get("whisper_bin", "whisper-cli"))
-		whisper_model = os.path.expanduser(cfg.get("whisper_model", "large-v3"))
+		whisper_path = os.path.expanduser(cfg.get("whisper_path", "~/Documents/tools/whisper.cpp"))
+		model_name = cfg.get("whisper_model", "large-v3")
+		whisper_model = os.path.join(whisper_path, f"models/ggml-{model_name}.bin")
 		language = cfg.get("language", "fr")
 
 		cmd = [whisper_bin, "-m", whisper_model, "-f", wav_path, "-nt"]

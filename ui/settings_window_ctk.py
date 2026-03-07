@@ -494,9 +494,9 @@ class SettingsWindow:
 
 			try:
 				if not os.path.exists(download_script):
-					self.window.after(0, lambda: messagebox.showerror("Erreur",
-					                     f"Script de téléchargement introuvable:\n{download_script}",
-					                     parent=self.window))
+					self.window.after(
+					    0, lambda: messagebox.showerror(
+					        "Erreur", f"Script de téléchargement introuvable:\n{download_script}", parent=self.window))
 					return
 
 				result = subprocess.run(["bash", download_script, model_name],
@@ -506,22 +506,22 @@ class SettingsWindow:
 				                        timeout=600)
 
 				if result.returncode == 0:
-					self.window.after(0, lambda: [
-					    messagebox.showinfo("Téléchargement réussi",
-					                        f"✓ Modèle {model_name} téléchargé avec succès !",
-					                        parent=self.window),
-					    self._show_models_settings()
-					])
+					self.window.after(
+					    0, lambda: [
+					        messagebox.showinfo("Téléchargement réussi",
+					                            f"✓ Modèle {model_name} téléchargé avec succès !",
+					                            parent=self.window),
+					        self._show_models_settings()
+					    ])
 				else:
-					self.window.after(0, lambda: messagebox.showerror("Erreur",
-					                     f"Échec du téléchargement:\n{result.stderr}",
-					                     parent=self.window))
+					self.window.after(
+					    0, lambda: messagebox.showerror(
+					        "Erreur", f"Échec du téléchargement:\n{result.stderr}", parent=self.window))
 			except subprocess.TimeoutExpired:
-				self.window.after(0, lambda: messagebox.showerror("Erreur",
-				                     "Timeout du téléchargement", parent=self.window))
+				self.window.after(
+				    0, lambda: messagebox.showerror("Erreur", "Timeout du téléchargement", parent=self.window))
 			except Exception as e:
-				self.window.after(0, lambda: messagebox.showerror("Erreur",
-				                     f"Erreur: {e}", parent=self.window))
+				self.window.after(0, lambda: messagebox.showerror("Erreur", f"Erreur: {e}", parent=self.window))
 
 		# Show progress message
 		messagebox.showinfo(

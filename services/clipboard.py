@@ -36,7 +36,10 @@ class ClipboardService:
 
 			# wl-copy must stay alive in the background to serve the Wayland
 			# clipboard — do NOT wait for it to finish.
-			cls._last_process = subprocess.Popen(["wl-copy", text], env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+			cls._last_process = subprocess.Popen(["wl-copy", text],
+			                                     env=env,
+			                                     stdout=subprocess.DEVNULL,
+			                                     stderr=subprocess.DEVNULL)
 
 			print("📋 Texte copié dans le presse-papiers!", flush=True)
 			NotificationService.send("Dictate PTT Copilot", "✅ Texte copié dans le presse-papiers")

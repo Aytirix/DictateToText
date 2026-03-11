@@ -1,6 +1,7 @@
 """Main application orchestrator"""
 
 import signal
+import time
 from threading import Thread
 
 import customtkinter as ctk
@@ -33,6 +34,7 @@ class DictatePTTApplication:
 		self._root = None
 		self._history_window = None
 		self._history_window_open = False
+		self._history_open_requested = False
 
 		# Keyboard state
 		self._was_copilot_down = False
@@ -57,21 +59,32 @@ class DictatePTTApplication:
 		print("Historique: Ctrl+Shift+H")
 		print()
 
-		# Create hidden Tkinter root in main thread
-		import config as cfg_module
-		cfg_obj = cfg_module.get_config_instance()
-		ctk.set_appearance_mode(cfg_obj.get("theme_mode", "dark"))
-		ctk.set_default_color_theme(cfg_obj.get("accent_color", "blue"))
-		self._root = ctk.CTk()
-		self._root.withdraw()  # Hide root window
+		gui_ready = self._ensure_gui_root()
+		if not gui_ready:
+			print("⚠️  Interface graphique indisponible au démarrage (DISPLAY absent).", flush=True)
+			print("ℹ️  La dictée continue en mode headless; l'historique ouvrira la GUI quand possible.", flush=True)
 
 		# Start keyboard listener in daemon thread
 		kbd_thread = Thread(target=self._event_loop, daemon=True)
 		kbd_thread.start()
 
-		# Main thread runs Tkinter mainloop
+		if gui_ready:
+			# Main thread runs Tkinter mainloop
+			try:
+				self._root.mainloop()
+			except KeyboardInterrupt:
+				self._shutdown()
+			return
+
+		# Headless fallback loop: keep service alive and try GUI on-demand
 		try:
-			self._root.mainloop()
+			while True:
+				if self._history_open_requested:
+					self._history_open_requested = False
+					if self._ensure_gui_root():
+						self._show_history()
+						self._root.mainloop()
+				time.sleep(0.2)
 		except KeyboardInterrupt:
 			self._shutdown()
 
@@ -82,8 +95,12 @@ class DictatePTTApplication:
 				# Check history combo
 				history_down = self.keyboard_handler.is_history_combo_pressed()
 				if history_down and not self._was_history_down:
-					# Schedule window creation on main (Tkinter) thread
-					self._root.after(0, self._show_history)
+					if self._root:
+						# Schedule window creation on main (Tkinter) thread
+						self._root.after(0, self._show_history)
+					else:
+						# Ask main thread to try creating GUI later (when display env is ready)
+						self._history_open_requested = True
 				self._was_history_down = history_down
 
 				# Check copilot combo (recording)
@@ -143,6 +160,24 @@ class DictatePTTApplication:
 				original_close()
 
 			self._history_window.on_close = on_close_wrapper
+
+	def _ensure_gui_root(self) -> bool:
+		"""Create hidden CTk root when a graphical display is available."""
+		if self._root:
+			return True
+
+		cfg_obj = cfg_module.get_config_instance()
+		ctk.set_appearance_mode(cfg_obj.get("theme_mode", "dark"))
+		ctk.set_default_color_theme(cfg_obj.get("accent_color", "blue"))
+
+		try:
+			self._root = ctk.CTk()
+			self._root.withdraw()  # Hide root window
+			return True
+		except Exception as e:
+			print(f"⚠️  GUI non disponible: {e}", flush=True)
+			self._root = None
+			return False
 
 	def _shutdown(self, *args) -> None:
 		"""Shutdown application"""

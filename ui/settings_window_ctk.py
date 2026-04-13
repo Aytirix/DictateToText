@@ -1,6 +1,8 @@
 """Settings window with CustomTkinter - Modern Design"""
 
 import os
+import re
+from pathlib import Path
 import customtkinter as ctk
 from tkinter import messagebox
 from typing import TYPE_CHECKING
@@ -38,6 +40,50 @@ def _enable_mousewheel_scroll(widget):
 
 class SettingsWindow:
 	"""Modern settings window with CustomTkinter"""
+
+	DEFAULT_WHISPER_MODELS = [
+	    "tiny",
+	    "tiny.en",
+	    "tiny-q5_1",
+	    "tiny.en-q5_1",
+	    "tiny-q8_0",
+	    "base",
+	    "base.en",
+	    "base-q5_1",
+	    "base.en-q5_1",
+	    "base-q8_0",
+	    "small",
+	    "small.en",
+	    "small.en-tdrz",
+	    "small-q5_1",
+	    "small.en-q5_1",
+	    "small-q8_0",
+	    "medium",
+	    "medium.en",
+	    "medium-q5_0",
+	    "medium.en-q5_0",
+	    "medium-q8_0",
+	    "large-v1",
+	    "large-v2",
+	    "large-v2-q5_0",
+	    "large-v2-q8_0",
+	    "large-v3",
+	    "large-v3-q5_0",
+	    "large-v3-turbo",
+	    "large-v3-turbo-q5_0",
+	    "large-v3-turbo-q8_0",
+	]
+
+	MODEL_METADATA = {
+	    "tiny": {"size": "75 MB", "speed": "⚡⚡⚡⚡⚡", "quality": "⭐⭐", "label": "Polyglotte"},
+	    "base": {"size": "142 MB", "speed": "⚡⚡⚡⚡", "quality": "⭐⭐⭐", "label": "Polyglotte"},
+	    "small": {"size": "466 MB", "speed": "⚡⚡⚡", "quality": "⭐⭐⭐⭐", "label": "Polyglotte"},
+	    "medium": {"size": "1.5 GB", "speed": "⚡⚡", "quality": "⭐⭐⭐⭐⭐", "label": "Polyglotte"},
+	    "large-v1": {"size": "2.9 GB", "speed": "⚡", "quality": "⭐⭐⭐⭐", "label": "Legacy"},
+	    "large-v2": {"size": "2.9 GB", "speed": "⚡", "quality": "⭐⭐⭐⭐⭐", "label": "Legacy"},
+	    "large-v3": {"size": "2.9 GB", "speed": "⚡", "quality": "⭐⭐⭐⭐⭐", "label": "Référence"},
+	    "large-v3-turbo": {"size": "~1.6 GB", "speed": "⚡⚡⚡⚡", "quality": "⭐⭐⭐⭐", "label": "Optimisé transcription"},
+	}
 
 	def __init__(self, parent, history_window: 'HistoryWindow'):
 		self.parent = parent
@@ -358,9 +404,6 @@ class SettingsWindow:
 
 	def _show_models_settings(self):
 		"""Show Whisper models management"""
-		import os
-		from pathlib import Path
-
 		self._create_category_title("📦 Gestion des Modèles Whisper")
 
 		# Info section
@@ -369,7 +412,7 @@ class SettingsWindow:
 
 		info_label = ctk.CTkLabel(
 		    info_frame,
-		    text="💡 Cliquez sur un modèle pour le sélectionner. Téléchargez les modèles manquants.",
+		    text="💡 La liste s'adapte automatiquement à votre version locale de whisper.cpp. Cliquez sur un modèle pour le sélectionner ou téléchargez les modèles manquants.",
 		    font=ctk.CTkFont(size=12),
 		    wraplength=800)
 		info_label.pack(pady=10, padx=10)
@@ -377,35 +420,11 @@ class SettingsWindow:
 		# Get whisper path
 		whisper_path = os.path.expanduser(self.cfg.get("whisper_path", "~/Documents/tools/whisper.cpp"))
 		models_dir = os.path.join(whisper_path, "models")
-
-		# Available models
-		models = [
-		    ("tiny", "75 MB", "⚡⚡⚡⚡⚡", "⭐⭐"),
-		    ("base", "142 MB", "⚡⚡⚡⚡", "⭐⭐⭐"),
-		    ("small", "466 MB", "⚡⚡⚡", "⭐⭐⭐⭐"),
-		    ("medium", "1.5 GB", "⚡⚡", "⭐⭐⭐⭐⭐"),
-		    ("large-v1", "2.9 GB", "⚡", "⭐⭐⭐⭐⭐"),
-		    ("large-v2", "2.9 GB", "⚡", "⭐⭐⭐⭐⭐"),
-		    ("large-v3", "2.9 GB", "⚡", "⭐⭐⭐⭐⭐"),
-		]
-
+		models = self._get_whisper_models(models_dir)
 		current_model = self.cfg.get("whisper_model", "large-v3")
+		models_sorted = self._sort_models(models, current_model, models_dir)
 
-		# Reorganize: put current model first
-		models_sorted = []
-		current_model_item = None
-
-		for model_info in models:
-			if model_info[0] == current_model:
-				current_model_item = model_info
-			else:
-				models_sorted.append(model_info)
-
-		# Put current model at the beginning
-		if current_model_item:
-			models_sorted.insert(0, current_model_item)
-
-		for model_name, size, speed, quality in models_sorted:
+		for model_name in models_sorted:
 			model_frame = ctk.CTkFrame(self.content_frame, corner_radius=10, height=80)
 			model_frame.pack(fill="x", padx=20, pady=5)
 			model_frame.pack_propagate(False)
@@ -413,6 +432,7 @@ class SettingsWindow:
 			# Check if model exists
 			model_path = os.path.join(models_dir, f"ggml-{model_name}.bin")
 			exists = Path(model_path).exists()
+			display = self._get_model_display(model_name)
 
 			# Model info left side
 			info_container = ctk.CTkFrame(model_frame, fg_color="transparent")
@@ -427,7 +447,9 @@ class SettingsWindow:
 			name_label.pack(anchor="w")
 
 			# Details
-			details = f"{size}  •  Vitesse: {speed}  •  Qualité: {quality}"
+			details = f"{display['size']}  •  Vitesse: {display['speed']}  •  Qualité: {display['quality']}"
+			if display["tags"]:
+				details += f"  •  {display['tags']}"
 			details_label = ctk.CTkLabel(info_container,
 			                             text=details,
 			                             font=ctk.CTkFont(size=11),
@@ -476,6 +498,101 @@ class SettingsWindow:
 				                             hover_color="#1565c0",
 				                             command=lambda m=model_name: self._download_model(m))
 				download_btn.pack(side="right", padx=5)
+
+	def _get_whisper_models(self, models_dir: str) -> list[str]:
+		"""Return models supported by the local whisper.cpp install, plus installed files."""
+		models: list[str] = []
+		download_script = os.path.join(os.path.dirname(models_dir), "models", "download-ggml-model.sh")
+
+		if os.path.exists(download_script):
+			try:
+				with open(download_script, "r", encoding="utf-8") as script_file:
+					content = script_file.read()
+				match = re.search(r'models="(.*?)"', content, re.S)
+				if match:
+					models.extend(line.strip() for line in match.group(1).splitlines() if line.strip())
+			except Exception:
+				pass
+
+		if not models:
+			models.extend(self.DEFAULT_WHISPER_MODELS)
+
+		try:
+			for filename in sorted(os.listdir(models_dir)):
+				if filename.startswith("ggml-") and filename.endswith(".bin"):
+					model_name = filename[len("ggml-"):-len(".bin")]
+					if model_name not in models:
+						models.append(model_name)
+		except OSError:
+			pass
+
+		current_model = self.cfg.get("whisper_model", "large-v3")
+		if current_model and current_model not in models:
+			models.insert(0, current_model)
+
+		return models
+
+	def _sort_models(self, models: list[str], current_model: str, models_dir: str) -> list[str]:
+		"""Sort current and installed models first, then keep whisper.cpp order."""
+		model_order = {model_name: index for index, model_name in enumerate(dict.fromkeys(models))}
+
+		def sort_key(model_name: str) -> tuple[int, int, str]:
+			model_path = os.path.join(models_dir, f"ggml-{model_name}.bin")
+			is_current = model_name == current_model
+			is_installed = Path(model_path).exists()
+			priority = 0 if is_current else 1 if is_installed else 2
+			return (priority, model_order.get(model_name, len(model_order)), model_name)
+
+		return sorted(dict.fromkeys(models), key=sort_key)
+
+	def _get_model_display(self, model_name: str) -> dict[str, str]:
+		"""Build a UI-friendly description for a model variant."""
+		base_name = self._get_base_model_name(model_name)
+		base_meta = self.MODEL_METADATA.get(base_name, {
+		    "size": "Taille variable",
+		    "speed": "Variable",
+		    "quality": "Variable",
+		    "label": "Personnalisé",
+		})
+
+		tags = []
+		if model_name.endswith(".en") or ".en-" in model_name:
+			tags.append("Anglais uniquement")
+		if model_name.endswith("-tdrz"):
+			tags.append("TinyDiarize")
+
+		quantization = self._get_quantization_suffix(model_name)
+		if quantization:
+			tags.append(f"Quantifié {quantization.upper()}")
+
+		if base_meta.get("label"):
+			tags.insert(0, base_meta["label"])
+
+		return {
+		    "size": base_meta["size"],
+		    "speed": base_meta["speed"],
+		    "quality": base_meta["quality"],
+		    "tags": " • ".join(tags),
+		}
+
+	@staticmethod
+	def _get_quantization_suffix(model_name: str) -> str | None:
+		"""Extract quantization suffix like q5_0 or q8_0 when present."""
+		match = re.search(r'-(q\d(?:_\d)?)$', model_name)
+		return match.group(1) if match else None
+
+	@staticmethod
+	def _get_base_model_name(model_name: str) -> str:
+		"""Reduce a variant name to its base family."""
+		base_name = model_name
+		quantization = SettingsWindow._get_quantization_suffix(base_name)
+		if quantization:
+			base_name = base_name[:-(len(quantization) + 1)]
+		if base_name.endswith("-tdrz"):
+			base_name = base_name[:-5]
+		if base_name.endswith(".en"):
+			base_name = base_name[:-3]
+		return base_name
 
 	def _select_model(self, model_name: str):
 		"""Select a different Whisper model"""

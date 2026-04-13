@@ -136,7 +136,7 @@ Elle est créée automatiquement au premier lancement avec les valeurs par défa
 
 | Paramètre | Défaut | Description |
 |-----------|--------|-------------|
-| `whisper_model` | `"large-v3"` | Modèle Whisper (`tiny`, `base`, `small`, `medium`, `large-v3`) |
+| `whisper_model` | `"large-v3"` | Modèle Whisper (`tiny`, `base`, `small`, `medium`, `large-v1/v2/v3`, `large-v3-turbo`, variantes `.en` et quantifiées selon votre version de `whisper.cpp`) |
 | `language` | `"fr"` | Langue de transcription |
 | `beam_size` | `5` | Taille du faisceau (plus grand = plus précis, plus lent) |
 | `initial_prompt` | `""` | Contexte pour améliorer la transcription |

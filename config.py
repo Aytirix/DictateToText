@@ -29,7 +29,7 @@ DEFAULT_CONFIG = {
     "audio_device_index": None,  # None = défaut du système
 
     # Whisper & Transcription
-    "whisper_model": "large-v3",  # "tiny", "base", "small", "medium", "large-v1/v2/v3"
+    "whisper_model": "large-v3",  # Exemples: "tiny", "small.en", "large-v3", "large-v3-turbo"
     "language": "fr",
     "task": "transcribe",  # "transcribe" ou "translate"
     "temperature": 0.0,

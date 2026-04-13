@@ -37,7 +37,7 @@ Le fichier de configuration se trouve dans : `~/Documents/tools/py/config/dictat
 
 ```json
 {
-  "whisper_model": "large-v3",     // "tiny", "base", "small", "medium", "large-v1/v2/v3"
+  "whisper_model": "large-v3",     // Exemples: "tiny", "small.en", "large-v3", "large-v3-turbo"
   "language": "fr",                // "fr", "en", "auto", etc.
   "task": "transcribe",            // "transcribe" ou "translate"
   "temperature": 0.0,              // Créativité (0.0-1.0)

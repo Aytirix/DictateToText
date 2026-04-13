@@ -57,7 +57,8 @@ Restart=on-failure
 RestartSec=1
 StandardOutput=journal
 StandardError=journal
-PassEnvironment=DISPLAY WAYLAND_DISPLAY XDG_RUNTIME_DIR
+Environment=XDG_RUNTIME_DIR=%t
+PassEnvironment=DISPLAY WAYLAND_DISPLAY XDG_RUNTIME_DIR XAUTHORITY DBUS_SESSION_BUS_ADDRESS
 
 [Install]
 WantedBy=graphical-session.target
@@ -79,12 +80,14 @@ disable: ## Désactiver le service au démarrage
 	@echo "✅ $(SERVICE_NAME) désactivé au démarrage"
 
 start: ## Démarrer le service
+	systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_RUNTIME_DIR XAUTHORITY DBUS_SESSION_BUS_ADDRESS || true
 	systemctl --user start $(SERVICE_NAME)
 
 stop: ## Arrêter le service
 	systemctl --user stop $(SERVICE_NAME)
 
 restart: ## Redémarrer le service
+	systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_RUNTIME_DIR XAUTHORITY DBUS_SESSION_BUS_ADDRESS || true
 	systemctl --user daemon-reload
 	systemctl --user restart $(SERVICE_NAME)
 

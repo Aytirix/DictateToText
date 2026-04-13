@@ -1,5 +1,8 @@
 """Main application orchestrator"""
 
+import glob
+import os
+import re
 import signal
 import time
 from threading import Thread
@@ -15,6 +18,8 @@ from ui import HistoryWindow
 
 class DictatePTTApplication:
 	"""Main application orchestrator"""
+
+	_GUI_ENV_KEYS = ("DISPLAY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR", "XAUTHORITY")
 
 	def __init__(self, cfg: AppConfig):
 		self.config = cfg
@@ -61,7 +66,7 @@ class DictatePTTApplication:
 
 		gui_ready = self._ensure_gui_root()
 		if not gui_ready:
-			print("⚠️  Interface graphique indisponible au démarrage (DISPLAY absent).", flush=True)
+			print("⚠️  Interface graphique indisponible au démarrage (contexte graphique introuvable ou inaccessible).", flush=True)
 			print("ℹ️  La dictée continue en mode headless; l'historique ouvrira la GUI quand possible.", flush=True)
 
 		# Start keyboard listener in daemon thread
@@ -170,14 +175,187 @@ class DictatePTTApplication:
 		ctk.set_appearance_mode(cfg_obj.get("theme_mode", "dark"))
 		ctk.set_default_color_theme(cfg_obj.get("accent_color", "blue"))
 
-		try:
-			self._root = ctk.CTk()
-			self._root.withdraw()  # Hide root window
-			return True
-		except Exception as e:
-			print(f"⚠️  GUI non disponible: {e}", flush=True)
-			self._root = None
-			return False
+		original_env = {key: os.environ.get(key) for key in self._GUI_ENV_KEYS}
+		last_error = None
+
+		for candidate in self._iter_gui_env_candidates():
+			previous_env = {key: os.environ.get(key) for key in self._GUI_ENV_KEYS}
+			self._apply_gui_env(candidate)
+
+			try:
+				self._root = ctk.CTk()
+				self._root.withdraw()  # Hide root window
+				self._log_gui_environment(candidate, original_env)
+				return True
+			except Exception as e:
+				last_error = e
+				self._root = None
+				self._apply_gui_env(previous_env)
+
+		if last_error is not None:
+			print(f"⚠️  GUI non disponible: {last_error}", flush=True)
+		return False
+
+	def _iter_gui_env_candidates(self) -> list[dict[str, str | None]]:
+		"""Build likely graphical environments for Tk/XWayland."""
+		current_env = {key: os.environ.get(key) for key in self._GUI_ENV_KEYS}
+		runtime_dir = self._discover_runtime_dir(current_env.get("XDG_RUNTIME_DIR"))
+		wayland_display = self._discover_wayland_display(runtime_dir, current_env.get("WAYLAND_DISPLAY"))
+		display_candidates = self._discover_display_candidates(current_env.get("DISPLAY"))
+		xauthority_candidates = self._discover_xauthority_candidates(runtime_dir, current_env.get("XAUTHORITY"))
+
+		candidates: list[dict[str, str | None]] = []
+		seen: set[tuple[tuple[str, str | None], ...]] = set()
+
+		def add_candidate(display: str | None,
+		                  wayland: str | None,
+		                  runtime: str | None,
+		                  xauthority: str | None) -> None:
+			candidate = {
+			    "DISPLAY": display,
+			    "WAYLAND_DISPLAY": wayland,
+			    "XDG_RUNTIME_DIR": runtime,
+			    "XAUTHORITY": xauthority,
+			}
+			signature = tuple((key, candidate[key]) for key in self._GUI_ENV_KEYS)
+			if signature not in seen:
+				seen.add(signature)
+				candidates.append(candidate)
+
+		add_candidate(current_env.get("DISPLAY"),
+		              current_env.get("WAYLAND_DISPLAY"),
+		              current_env.get("XDG_RUNTIME_DIR"),
+		              current_env.get("XAUTHORITY"))
+
+		for display in display_candidates:
+			add_candidate(display, wayland_display, runtime_dir, current_env.get("XAUTHORITY"))
+			for xauthority in xauthority_candidates:
+				add_candidate(display, wayland_display, runtime_dir, xauthority)
+
+		if not display_candidates:
+			for xauthority in xauthority_candidates:
+				add_candidate(None, wayland_display, runtime_dir, xauthority)
+
+		add_candidate(None, wayland_display, runtime_dir, current_env.get("XAUTHORITY"))
+		add_candidate(None, wayland_display, runtime_dir, None)
+
+		return candidates
+
+	def _discover_runtime_dir(self, current_runtime_dir: str | None) -> str | None:
+		"""Return a valid XDG runtime directory when available."""
+		if current_runtime_dir and os.path.isdir(current_runtime_dir):
+			return current_runtime_dir
+
+		fallback = f"/run/user/{os.getuid()}"
+		if os.path.isdir(fallback):
+			return fallback
+
+		return None
+
+	def _discover_wayland_display(self,
+	                              runtime_dir: str | None,
+	                              current_wayland_display: str | None) -> str | None:
+		"""Return an existing Wayland socket name when possible."""
+		if runtime_dir and current_wayland_display:
+			current_socket = os.path.join(runtime_dir, current_wayland_display)
+			if os.path.exists(current_socket):
+				return current_wayland_display
+
+		if not runtime_dir:
+			return current_wayland_display
+
+		for path in sorted(glob.glob(os.path.join(runtime_dir, "wayland-*"))):
+			name = os.path.basename(path)
+			if re.fullmatch(r"wayland-\d+", name):
+				return name
+
+		return current_wayland_display
+
+	def _discover_display_candidates(self, current_display: str | None) -> list[str]:
+		"""Discover likely X11/XWayland DISPLAY values, prioritizing the current user."""
+		candidates: list[tuple[int, int, str]] = []
+		current_uid = os.getuid()
+
+		if current_display:
+			display_number = self._display_number(current_display)
+			priority = -1 if display_number is not None else 0
+			candidates.append((priority, display_number or 0, current_display))
+
+		for path in glob.glob("/tmp/.X11-unix/X*"):
+			name = os.path.basename(path)
+			if not re.fullmatch(r"X\d+", name):
+				continue
+
+			display_number = int(name[1:])
+			display = f":{display_number}"
+
+			try:
+				socket_uid = os.stat(path).st_uid
+			except OSError:
+				socket_uid = -1
+
+			priority = 0 if socket_uid == current_uid else 1
+			candidates.append((priority, display_number, display))
+
+		seen: set[str] = set()
+		ordered: list[str] = []
+		for _, _, display in sorted(candidates):
+			if display not in seen:
+				seen.add(display)
+				ordered.append(display)
+		return ordered
+
+	def _discover_xauthority_candidates(self,
+	                                    runtime_dir: str | None,
+	                                    current_xauthority: str | None) -> list[str]:
+		"""Return existing Xauthority files that might grant access to XWayland."""
+		paths: list[str] = []
+
+		if current_xauthority:
+			paths.append(current_xauthority)
+
+		paths.append(os.path.expanduser("~/.Xauthority"))
+
+		if runtime_dir:
+			paths.extend(glob.glob(os.path.join(runtime_dir, ".mutter-Xwaylandauth.*")))
+			paths.extend(glob.glob(os.path.join(runtime_dir, "*Xauthority*")))
+			paths.extend(glob.glob(os.path.join(runtime_dir, "*xauth*")))
+
+		seen: set[str] = set()
+		existing: list[str] = []
+		for path in paths:
+			if path and os.path.isfile(path) and path not in seen:
+				seen.add(path)
+				existing.append(path)
+		return existing
+
+	def _apply_gui_env(self, candidate: dict[str, str | None]) -> None:
+		"""Apply one GUI environment candidate to the current process."""
+		for key in self._GUI_ENV_KEYS:
+			value = candidate.get(key)
+			if value:
+				os.environ[key] = value
+			else:
+				os.environ.pop(key, None)
+
+	def _log_gui_environment(self,
+	                         selected_env: dict[str, str | None],
+	                         original_env: dict[str, str | None]) -> None:
+		"""Log when a missing or incomplete GUI environment was repaired automatically."""
+		if selected_env == original_env:
+			return
+
+		details = [f"{key}={value}" for key, value in selected_env.items() if value]
+		if details:
+			print(f"🖥️  Environnement graphique détecté automatiquement ({', '.join(details)})", flush=True)
+
+	@staticmethod
+	def _display_number(display: str) -> int | None:
+		"""Parse a DISPLAY value like :1 or :1.0 into its numeric display id."""
+		match = re.fullmatch(r":(\d+)(?:\.\d+)?", display)
+		if not match:
+			return None
+		return int(match.group(1))
 
 	def _shutdown(self, *args) -> None:
 		"""Shutdown application"""

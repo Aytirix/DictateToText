@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Set
 
-from evdev import ecodes
+from evdev import InputDevice, ecodes, list_devices
 import config as cfg_module
 
 
@@ -23,6 +23,10 @@ class AppConfig:
 	history_combo: Set[int] = None
 
 	def __post_init__(self):
+		self.reload()
+
+	def reload(self) -> None:
+		"""Reload runtime configuration from disk."""
 		# Load from config
 		cfg = cfg_module.get_config_instance()
 
@@ -51,9 +55,26 @@ class AppConfig:
 
 	def validate(self) -> None:
 		"""Validate configuration paths"""
-		if not Path(self.input_event).exists():
-			raise FileNotFoundError(f"Device introuvable: {self.input_event}")
+		if not self._has_readable_keyboard_device():
+			raise PermissionError(
+				"Aucun périphérique clavier lisible. "
+				"Ajoutez votre utilisateur au groupe input: sudo usermod -aG input $USER, "
+				"puis déconnectez-vous et reconnectez-vous."
+			)
 		if not Path(self.whisper_bin).exists():
 			raise FileNotFoundError(f"whisper-cli introuvable: {self.whisper_bin}")
 		if not Path(self.whisper_model).exists():
 			raise FileNotFoundError(f"Modèle introuvable: {self.whisper_model}")
+
+	def _has_readable_keyboard_device(self) -> bool:
+		"""Return True when at least one keyboard-like input device is readable."""
+		for path in [self.input_event, *list_devices()]:
+			try:
+				device = InputDevice(path)
+				keys = device.capabilities().get(ecodes.EV_KEY, [])
+			except OSError:
+				continue
+
+			if isinstance(keys, list) and keys:
+				return True
+		return False

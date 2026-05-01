@@ -1,13 +1,13 @@
 PROJECT_DIR  := $(shell pwd)
 VENV         := $(PROJECT_DIR)/venv
 PYTHON       := $(VENV)/bin/python
-PIP          := $(VENV)/bin/pip
+PIP          := $(PYTHON) -m pip
 ENTRY        := $(PROJECT_DIR)/dictate_ptt_copilot.py
 SERVICE_NAME := dictate-ptt.service
 SERVICE_DIR  := $(HOME)/.config/systemd/user
 SERVICE_FILE := $(SERVICE_DIR)/$(SERVICE_NAME)
 
-.PHONY: help install run compile service enable disable start stop restart status logs logs-follow clean
+.PHONY: help install-system-deps check-system-deps install run compile service enable disable start stop restart status logs logs-follow clean
 
 # ── Aide ───────────────────────────────────────────────────
 
@@ -28,13 +28,34 @@ help: ## Afficher cette aide
 
 # ── Développement ──────────────────────────────────────────
 
-install: ## Créer le venv (si besoin) et installer les dépendances
-	@test -d $(VENV) || python3 -m venv $(VENV)
+install-system-deps:
+	@if ! command -v wl-copy >/dev/null 2>&1; then \
+		echo "Installation de wl-clipboard (wl-copy)..."; \
+		if command -v apt-get >/dev/null 2>&1; then \
+			sudo apt-get update && sudo apt-get install -y wl-clipboard; \
+		elif command -v dnf >/dev/null 2>&1; then \
+			sudo dnf install -y wl-clipboard; \
+		elif command -v pacman >/dev/null 2>&1; then \
+			sudo pacman -S --needed wl-clipboard; \
+		else \
+			echo "❌ Gestionnaire de paquets non pris en charge. Installez wl-clipboard manuellement."; \
+			exit 1; \
+		fi; \
+	fi
+
+check-system-deps:
+	@command -v wl-copy >/dev/null 2>&1 || (echo "❌ wl-copy introuvable. Lancez: make install" && exit 1)
+	@python3 -c "import tkinter" >/dev/null 2>&1 || (echo "❌ Module tkinter introuvable. Installez-le d'abord: sudo apt install $$(python3 -c 'import sys; print(f"python{sys.version_info.major}.{sys.version_info.minor}-tk")')" && exit 1)
+	@python3 -c "import ctypes.util; raise SystemExit(0 if ctypes.util.find_library('portaudio') else 1)" >/dev/null 2>&1 || (echo "❌ Bibliothèque PortAudio introuvable. Installez-la d'abord: sudo apt install libportaudio2" && exit 1)
+
+install: install-system-deps check-system-deps ## Créer le venv (si besoin) et installer les dépendances
+	@test -d $(VENV) || (python3 -m venv $(VENV) || (rm -rf $(VENV) && python3 -m venv --without-pip $(VENV) && python3 -m pip --python $(VENV) install pip))
+	@$(PIP) --version >/dev/null 2>&1 || python3 -m pip --python $(VENV) install pip
 	$(PIP) install --upgrade pip
 	$(PIP) install sounddevice soundfile numpy evdev customtkinter
 	@echo "✅ Dépendances installées"
 
-run: ## Lancer le programme en avant-plan (hors service)
+run: check-system-deps ## Lancer le programme en avant-plan (hors service)
 	$(PYTHON) $(ENTRY)
 
 compile: ## Vérifier la syntaxe de tous les .py

@@ -42,10 +42,10 @@ class ClipboardService:
 			                                     stderr=subprocess.DEVNULL)
 
 			print("📋 Texte copié dans le presse-papiers!", flush=True)
-			NotificationService.send("Dictate PTT Copilot", "✅ Texte copié dans le presse-papiers")
+			NotificationService.copied()
 			return True
 
 		except Exception as e:
 			print(f"wl-copy erreur: {e}", flush=True)
-			NotificationService.send("Dictate PTT Copilot", f"Erreur copie:\n{e}")
+			NotificationService.failed(f"Erreur copie:\n{e}")
 			return False

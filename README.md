@@ -38,7 +38,7 @@ Maintenez une combinaison de touches, parlez, relâchez : le texte transcrit est
 
 ```bash
 # Debian / Ubuntu
-sudo apt install python3 python3-venv wl-clipboard libnotify-bin libportaudio2
+sudo apt install python3 python3-venv python3-tk wl-clipboard libnotify-bin libportaudio2
 
 # Fedora
 sudo dnf install python3 wl-clipboard libnotify portaudio-devel

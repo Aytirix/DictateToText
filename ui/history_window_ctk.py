@@ -55,6 +55,7 @@ class HistoryWindow:
 	def __init__(self, root, history_manager: 'HistoryManager', worker: 'TranscriptionWorker'):
 		self.history_manager = history_manager
 		self.worker = worker
+		self.on_settings_applied = None
 
 		# Logs en temps réel
 		self.logs_queue = queue.Queue()

@@ -39,6 +39,7 @@ DEFAULT_CONFIG = {
     "word_timestamps": False,
     "vad_filter": False,
     "compute_type": "float16",  # "int8", "float16", "float32"
+    "whisper_no_gpu": False,  # True = forcer whisper.cpp en CPU (--no-gpu)
 
     # Raccourcis Clavier
     "record_combo": ["KEY_LEFTMETA", "KEY_LEFTSHIFT", "KEY_F23"],

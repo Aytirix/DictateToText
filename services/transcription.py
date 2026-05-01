@@ -9,7 +9,7 @@ import config as cfg_module
 class TranscriptionService:
 	"""Handle Whisper transcription"""
 
-	def transcribe(self, wav_path: str) -> str:
+	def transcribe(self, wav_path: str) -> str | None:
 		"""Transcribe audio file using Whisper"""
 		cfg = cfg_module.get_config_instance()
 
@@ -36,18 +36,41 @@ class TranscriptionService:
 		if cfg.get("task", "transcribe") == "translate":
 			cmd += ["-tr"]
 
+		no_gpu = cfg.get("whisper_no_gpu", False)
+		if no_gpu:
+			cmd += ["-ng"]
+
 		timeout = cfg.get("whisper_timeout", 120)
-		try:
-			result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-		except subprocess.TimeoutExpired:
-			print(f"❌ Timeout whisper-cli ({timeout}s)", flush=True)
-			return ""
+		result = self._run_whisper(cmd, timeout)
+		if result is None:
+			return None
 
 		if result.returncode != 0:
-			print(f"❌ whisper-cli erreur (code {result.returncode}): {result.stderr[:200]}", flush=True)
+			stderr = result.stderr or ""
+			print(f"❌ whisper-cli erreur (code {result.returncode}):\n{stderr.strip()}", flush=True)
+
+			if not no_gpu and self._is_gpu_oom(stderr):
+				print("⚠️  Mémoire GPU insuffisante. Gardez le GPU avec un modèle plus léger/quantifié.", flush=True)
+
+			return None
 
 		# Use only stdout for text — stderr contains logs
 		return self._clean_output(result.stdout or "")
+
+	@staticmethod
+	def _run_whisper(cmd: list[str], timeout: int) -> subprocess.CompletedProcess | None:
+		"""Run whisper-cli and handle timeouts."""
+		try:
+			return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+		except subprocess.TimeoutExpired:
+			print(f"❌ Timeout whisper-cli ({timeout}s)", flush=True)
+			return None
+
+	@staticmethod
+	def _is_gpu_oom(stderr: str) -> bool:
+		"""Return True when whisper.cpp failed because CUDA ran out of memory."""
+		s = stderr.lower()
+		return "cuda" in s and "out of memory" in s
 
 	@staticmethod
 	def _clean_output(output: str) -> str:

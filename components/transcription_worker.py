@@ -48,14 +48,18 @@ class TranscriptionWorker:
 					self._transcribing = True
 
 				print(f"🔄 Transcription en cours: {wav_file}", flush=True)
+				NotificationService.transcribing()
 				text = self.transcription_service.transcribe(wav_file)
 
 				# Release flag immediately after transcription
 				with self._transcribing_lock:
 					self._transcribing = False
-				print("✅ Transcription terminée.", flush=True)
 
-				if text:
+				if text is None:
+					print("❌ Transcription échouée.", flush=True)
+					NotificationService.failed("Transcription échouée")
+				elif text:
+					print("✅ Transcription terminée.", flush=True)
 					self.history_manager.add(text)
 					print(text, flush=True)
 
@@ -63,13 +67,14 @@ class TranscriptionWorker:
 						self.clipboard_service.copy(text)
 					except Exception as e:
 						print(f"⚠️  Erreur copie: {e}", flush=True)
-						NotificationService.send("Dictate PTT Copilot", f"Transcription OK mais erreur copie: {e}")
+						NotificationService.failed(f"Transcription OK mais erreur copie: {e}")
 				else:
+					print("✅ Transcription terminée.", flush=True)
 					print("⚠️  Transcription vide.", flush=True)
 
 			except Exception as e:
 				print(f"❌ Erreur transcription: {e}", flush=True)
-				NotificationService.send("Dictate PTT Copilot", f"Erreur: {e}")
+				NotificationService.failed(f"Erreur: {e}")
 				with self._transcribing_lock:
 					self._transcribing = False
 

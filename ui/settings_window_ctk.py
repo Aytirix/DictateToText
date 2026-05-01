@@ -1,11 +1,15 @@
 """Settings window with CustomTkinter - Modern Design"""
 
 import os
+import select
+import threading
 import re
 from pathlib import Path
 import customtkinter as ctk
 from tkinter import messagebox
 from typing import TYPE_CHECKING
+
+from evdev import InputDevice, ecodes, list_devices
 
 import config
 
@@ -89,6 +93,10 @@ class SettingsWindow:
 		self.parent = parent
 		self.history_window = history_window
 		self.cfg = config.get_config_instance()
+		self._capture_target_var = None
+		self._capture_pressed_keys = []
+		self._capture_previous_value = ""
+		self._capture_thread = None
 
 		self.window = ctk.CTkToplevel(parent)
 		self.current_category = "Interface"
@@ -236,6 +244,10 @@ class SettingsWindow:
 
 		# Comportement
 		self.recording_mode_var = ctk.StringVar(value=self.cfg.get("recording_mode", "push_to_talk"))
+		self.record_combo_var = ctk.StringVar(
+		    value=self._format_key_combo(self.cfg.get("record_combo", ["KEY_LEFTMETA", "KEY_LEFTSHIFT", "KEY_F23"])))
+		self.history_combo_var = ctk.StringVar(
+		    value=self._format_key_combo(self.cfg.get("history_combo", ["KEY_LEFTCTRL", "KEY_LEFTSHIFT", "KEY_H"])))
 		self.auto_start_var = ctk.BooleanVar(value=self.cfg.get("auto_start", False))
 		self.minimize_tray_var = ctk.BooleanVar(value=self.cfg.get("minimize_to_tray", False))
 
@@ -388,6 +400,8 @@ class SettingsWindow:
 
 		self._create_option_menu(self.content_frame, "Mode d'enregistrement", self.recording_mode_var,
 		                         ["push_to_talk", "toggle"])
+		self._create_key_combo_entry(self.content_frame, "Touche d'activation", self.record_combo_var)
+		self._create_key_combo_entry(self.content_frame, "Raccourci historique", self.history_combo_var)
 
 		self._create_switch(self.content_frame, "Lancer au démarrage", self.auto_start_var)
 		self._create_switch(self.content_frame, "Minimiser vers barre système", self.minimize_tray_var)
@@ -746,6 +760,31 @@ class SettingsWindow:
 		switch = ctk.CTkSwitch(frame, text="", variable=variable, width=50, height=26)
 		switch.pack(side="right")
 
+	def _create_key_combo_entry(self, parent, label: str, variable):
+		"""Create a key combo capture control."""
+		frame = ctk.CTkFrame(parent, fg_color="transparent")
+		frame.pack(fill="x", pady=8, padx=20)
+
+		lbl = ctk.CTkLabel(frame, text=label, anchor="w", width=280)
+		lbl.pack(side="left", padx=(0, 20))
+
+		button = ctk.CTkButton(frame,
+		                       text="Capturer",
+		                       width=95,
+		                       height=36,
+		                       command=lambda: self._start_key_capture(variable))
+		button.pack(side="right")
+
+		value = ctk.CTkButton(frame,
+		                      textvariable=variable,
+		                      width=300,
+		                      height=36,
+		                      fg_color=("gray85", "gray25"),
+		                      hover_color=("gray80", "gray30"),
+		                      text_color=("black", "white"),
+		                      command=lambda: self._start_key_capture(variable))
+		value.pack(side="right", padx=(0, 10))
+
 	def _create_option_menu_with_help(self, parent, label: str, variable, values: list, help_text: str):
 		"""Create an option menu with help tooltip"""
 		frame = ctk.CTkFrame(parent, fg_color="transparent")
@@ -848,6 +887,149 @@ class SettingsWindow:
 		from tkinter import messagebox
 		messagebox.showinfo(f"ℹ️ {title}", message, parent=self.window)
 
+	@staticmethod
+	def _format_key_combo(keys: list[str]) -> str:
+		"""Format a key combo for editing."""
+		return "+".join(keys)
+
+	def _start_key_capture(self, variable) -> None:
+		"""Start capturing the next key combo."""
+		if self._capture_thread and self._capture_thread.is_alive():
+			return
+
+		self._capture_target_var = variable
+		self._capture_pressed_keys = []
+		self._capture_previous_value = variable.get()
+		variable.set("Appuyez sur une touche...")
+		self.window.focus_force()
+		self._capture_thread = threading.Thread(target=self._capture_combo_from_input_device, daemon=True)
+		self._capture_thread.start()
+
+	def _capture_combo_from_input_device(self) -> None:
+		"""Capture the next key combo from keyboard-like evdev devices."""
+		pressed: list[str] = []
+
+		try:
+			devices = self._capture_devices()
+			while devices:
+				if self._capture_target_var is None:
+					break
+
+				readable, _, _ = select.select(devices, [], [], 0.5)
+				for device in readable:
+					for event in device.read():
+						if event.type != ecodes.EV_KEY:
+							continue
+
+						key = ecodes.KEY.get(event.code)
+						if isinstance(key, list):
+							key = key[0]
+						if not isinstance(key, str) or not key.startswith("KEY_"):
+							continue
+
+						if event.value == 1 and key not in pressed:
+							pressed.append(key)
+							self.window.after(0, self._set_capture_text, self._format_key_combo(pressed))
+							if not self._is_modifier_key(key):
+								self.window.after(0, self._finish_key_capture, pressed.copy())
+								return
+						elif event.value == 0 and key in pressed and all(self._is_modifier_key(k) for k in pressed):
+							self.window.after(0, self._finish_key_capture, pressed.copy())
+							return
+		except Exception as e:
+			self.window.after(0, self._fail_key_capture, str(e))
+
+	def _capture_devices(self) -> list[InputDevice]:
+		"""Open keyboard-like devices for shortcut capture."""
+		input_event = self.cfg.get("input_event", "/dev/input/event3")
+		devices = []
+		seen_paths = set()
+
+		for path in [input_event, *list_devices()]:
+			if path in seen_paths:
+				continue
+			seen_paths.add(path)
+
+			try:
+				device = InputDevice(path)
+				keys = device.capabilities().get(ecodes.EV_KEY, [])
+			except OSError:
+				continue
+
+			if self._is_capture_device(device, keys):
+				devices.append(device)
+
+		if not devices:
+			devices.append(InputDevice(input_event))
+		return devices
+
+	@staticmethod
+	def _is_capture_device(device: InputDevice, keys) -> bool:
+		"""Return True for devices worth listening to during shortcut capture."""
+		if not isinstance(keys, list) or not keys:
+			return False
+
+		key_set = set(keys)
+		name = device.name.lower()
+		return (
+		    "keyboard" in name
+		    or "hotkey" in name
+		    or "consumer control" in name
+		    or ecodes.KEY_A in key_set
+		    or ecodes.KEY_SPACE in key_set
+		    or ecodes.KEY_LEFTMETA in key_set
+		    or ecodes.KEY_F23 in key_set
+		)
+
+	def _set_capture_text(self, value: str) -> None:
+		"""Update the currently captured key combo."""
+		if self._capture_target_var is not None:
+			self._capture_target_var.set(value)
+
+	def _finish_key_capture(self, keys: list[str]) -> None:
+		"""Finish key capture with the selected combo."""
+		if self._capture_target_var is not None and keys:
+			self._capture_target_var.set(self._format_key_combo(keys))
+		self._capture_target_var = None
+		self._capture_pressed_keys = []
+		self._capture_previous_value = ""
+
+	def _fail_key_capture(self, message: str) -> None:
+		"""Restore previous value when key capture fails."""
+		if self._capture_target_var is not None:
+			self._capture_target_var.set(self._capture_previous_value)
+		self._capture_target_var = None
+		self._capture_pressed_keys = []
+		self._capture_previous_value = ""
+		messagebox.showerror("Capture impossible", message, parent=self.window)
+
+	@staticmethod
+	def _is_modifier_key(key: str) -> bool:
+		"""Return True for modifier keys that can prefix a combo."""
+		return key in {
+		    "KEY_LEFTSHIFT",
+		    "KEY_RIGHTSHIFT",
+		    "KEY_LEFTCTRL",
+		    "KEY_RIGHTCTRL",
+		    "KEY_LEFTALT",
+		    "KEY_RIGHTALT",
+		    "KEY_LEFTMETA",
+		    "KEY_RIGHTMETA",
+		}
+
+	@staticmethod
+	def _parse_key_combo(value: str) -> list[str]:
+		"""Parse and validate an evdev key combo."""
+		keys = [part.strip().upper() for part in re.split(r"[+,]", value) if part.strip()]
+		if not keys:
+			raise ValueError("Le raccourci ne peut pas être vide.")
+
+		invalid = [key for key in keys if not key.startswith("KEY_") or getattr(ecodes, key, None) is None]
+		if invalid:
+			raise ValueError(f"Touche inconnue: {', '.join(invalid)}")
+
+		return list(dict.fromkeys(keys))
+
 	def _apply_settings(self):
 		"""Apply all settings with hot-reload"""
 		old_config = {
@@ -857,6 +1039,13 @@ class SettingsWindow:
 		    "history_size": self.cfg.get("history_size"),
 		    "save_audio_files": self.cfg.get("save_audio_files"),
 		}
+
+		try:
+			record_combo = self._parse_key_combo(self.record_combo_var.get())
+			history_combo = self._parse_key_combo(self.history_combo_var.get())
+		except ValueError as e:
+			messagebox.showerror("Raccourci invalide", str(e), parent=self.window)
+			return
 
 		updates = {
 		    "theme_mode": self.theme_var.get(),
@@ -878,6 +1067,8 @@ class SettingsWindow:
 		    "notifications_enabled": self.notif_enabled_var.get(),
 		    "notification_duration": self.notif_duration_var.get(),
 		    "recording_mode": self.recording_mode_var.get(),
+		    "record_combo": record_combo,
+		    "history_combo": history_combo,
 		    "auto_start": self.auto_start_var.get(),
 		    "minimize_to_tray": self.minimize_tray_var.get(),
 		    "log_level": self.log_level_var.get(),
@@ -909,6 +1100,9 @@ class SettingsWindow:
 					self.history_window.add_audio_tab()
 				else:
 					self.history_window.remove_audio_tab()
+
+			if self.history_window.on_settings_applied:
+				self.history_window.on_settings_applied()
 
 			# Update history window
 			self.history_window.update_title()

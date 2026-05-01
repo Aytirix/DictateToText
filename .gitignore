@@ -2,3 +2,4 @@
 **/__pycache__
 config/dictate_ptt_copilot/config.json
 audio_temp
+graphify-out/cache/

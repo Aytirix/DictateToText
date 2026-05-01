@@ -44,6 +44,8 @@ class DictatePTTApplication:
 		# Keyboard state
 		self._was_copilot_down = False
 		self._was_history_down = False
+		self._recording_started_at = None
+		self._tap_toggle_recording = False
 
 	def run(self) -> None:
 		"""Run the application"""
@@ -117,31 +119,59 @@ class DictatePTTApplication:
 					# Toggle mode: press once to start, press again to stop
 					if copilot_down and not self._was_copilot_down:
 						if self.recorder.is_recording:
+							self._stop_recording_reminder()
 							wav_file = self.recorder.stop_recording()
+							self._recording_started_at = None
 							if wav_file:
 								self.worker.submit(wav_file)
 						elif self.worker.is_transcribing():
 							print("⚠️  Conversion en cours, patientez...", flush=True)
-							self.notification_service.send("Dictate PTT Copilot", "Conversion en cours, patientez...")
+							NotificationService.transcribing()
 						else:
-							self.recorder.start_recording()
+							if self.recorder.start_recording():
+								self._recording_started_at = time.monotonic()
+								self._start_recording_reminder()
 				else:
-					# Push-to-talk mode (default): hold to record, release to stop
+					# Push-to-talk mode: hold to record, or tap again for keys that release instantly.
 					if copilot_down and not self._was_copilot_down:
-						if self.worker.is_transcribing():
+						if self._tap_toggle_recording and self.recorder.is_recording:
+							self._tap_toggle_recording = False
+							self._stop_recording_reminder()
+							wav_file = self.recorder.stop_recording()
+							self._recording_started_at = None
+							if wav_file:
+								self.worker.submit(wav_file)
+						elif self.worker.is_transcribing():
 							print("⚠️  Conversion en cours, patientez...", flush=True)
-							self.notification_service.send("Dictate PTT Copilot", "Conversion en cours, patientez...")
+							NotificationService.transcribing()
 						else:
-							self.recorder.start_recording()
+							if self.recorder.start_recording():
+								self._recording_started_at = time.monotonic()
 
-					if not copilot_down and self._was_copilot_down and self.recorder.is_recording:
+					if (not copilot_down and self._was_copilot_down and self.recorder.is_recording
+					        and not self._tap_toggle_recording):
+						elapsed = time.monotonic() - self._recording_started_at if self._recording_started_at else 0
+						if elapsed < 0.35:
+							self._tap_toggle_recording = True
+							self._start_recording_reminder()
+							print("🎙️  Touche instantanée détectée, écoute maintenue jusqu'au prochain appui.", flush=True)
+							continue
 						wav_file = self.recorder.stop_recording()
+						self._recording_started_at = None
 						if wav_file:
 							self.worker.submit(wav_file)
 
 				self._was_copilot_down = copilot_down
 		except Exception as e:
 			print(f"❌ Erreur boucle clavier: {e}", flush=True)
+
+	def _start_recording_reminder(self) -> None:
+		"""Show persistent recording notification."""
+		NotificationService.listening()
+
+	def _stop_recording_reminder(self) -> None:
+		"""Stop the toggle recording reminder."""
+		return
 
 	def _show_history(self) -> None:
 		"""Show or focus history window (called on main thread)"""
@@ -155,6 +185,7 @@ class DictatePTTApplication:
 
 		if not self._history_window_open:
 			self._history_window = HistoryWindow(self._root, self.history_manager, self.worker)
+			self._history_window.on_settings_applied = self.keyboard_handler.reload_config
 			self._history_window_open = True
 
 			original_close = self._history_window.on_close
@@ -360,6 +391,7 @@ class DictatePTTApplication:
 	def _shutdown(self, *args) -> None:
 		"""Shutdown application"""
 		print("\n🛑 Arrêt de l'application...")
+		self._stop_recording_reminder()
 
 		# Close history window if open
 		if self._history_window_open and self._history_window:

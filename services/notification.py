@@ -9,7 +9,7 @@ import config as cfg_module
 class NotificationService:
 	"""Handle system notifications"""
 
-	_current_id = None
+	_current_ids = {"state": None, "feedback": None}
 	_lock = Lock()
 	APP_NAME = "Dictate PTT Copilot"
 
@@ -21,33 +21,43 @@ class NotificationService:
 	@classmethod
 	def listening(cls) -> None:
 		"""Show persistent listening notification."""
-		cls._send(cls.APP_NAME, "🎙️ Écoute en cours", timeout_ms=0, replace=True)
+		cls._send(cls.APP_NAME, "🎙️ Écoute en cours", timeout_ms=0, replace=True, urgency="critical", slot="state")
 
 	@classmethod
 	def transcribing(cls) -> None:
 		"""Show persistent transcribing notification."""
-		cls._send(cls.APP_NAME, "🔄 Transcription en texte...", timeout_ms=0, replace=True)
+		cls._send(cls.APP_NAME, "🔄 Transcription en texte...", timeout_ms=0, replace=True, urgency="critical", slot="state")
 
 	@classmethod
 	def copied(cls) -> None:
 		"""Show short success notification."""
-		cls._send(cls.APP_NAME, "✅ Copié dans le presse-papiers", timeout_ms=3000, replace=True)
+		cls._send(cls.APP_NAME, "✅ Copié dans le presse-papiers", timeout_ms=3000, replace=True, slot="feedback")
 
 	@classmethod
 	def failed(cls, body: str) -> None:
 		"""Show short error notification."""
-		cls._send(cls.APP_NAME, body, timeout_ms=5000, replace=True)
+		cls._send(cls.APP_NAME, body, timeout_ms=5000, replace=True, slot="feedback")
 
 	@classmethod
 	def close_current(cls) -> None:
-		"""Close the currently tracked notification when the server supports it."""
+		"""Close the current state notification when the server supports it."""
+		cls._close_slot("state")
+
+	@classmethod
+	def close_feedback(cls) -> None:
+		"""Close the current feedback notification when the server supports it."""
+		cls._close_slot("feedback")
+
+	@classmethod
+	def _close_slot(cls, slot: str) -> None:
+		"""Close the currently tracked notification for a slot when supported."""
 		cfg = cfg_module.get_config_instance()
 		if not cfg.get("notifications_enabled", True):
 			return
 
 		with cls._lock:
-			notification_id = cls._current_id
-			cls._current_id = None
+			notification_id = cls._current_ids.get(slot)
+			cls._current_ids[slot] = None
 
 		if not notification_id:
 			return
@@ -70,7 +80,13 @@ class NotificationService:
 			pass
 
 	@classmethod
-	def _send(cls, title: str, body: str = "", timeout_ms: int | None = None, replace: bool = False) -> None:
+	def _send(cls,
+	          title: str,
+	          body: str = "",
+	          timeout_ms: int | None = None,
+	          replace: bool = False,
+	          urgency: str | None = None,
+	          slot: str = "feedback") -> None:
 		"""Send a notification, optionally replacing the previous app notification."""
 		cfg = cfg_module.get_config_instance()
 		if not cfg.get("notifications_enabled", True):
@@ -78,24 +94,31 @@ class NotificationService:
 
 		if replace:
 			with cls._lock:
-				new_id = cls._send_replace(title, body, timeout_ms, cls._current_id)
-				if new_id is None and cls._current_id:
-					cls._current_id = None
-					new_id = cls._send_replace(title, body, timeout_ms, None)
+				replace_id = cls._current_ids.get(slot)
+				new_id = cls._send_replace(title, body, timeout_ms, replace_id, urgency, slot)
+				if new_id is None and replace_id:
+					cls._current_ids[slot] = None
+					new_id = cls._send_replace(title, body, timeout_ms, None, urgency, slot)
 				if new_id is not None:
-					cls._current_id = new_id
+					cls._current_ids[slot] = new_id
 			return
 
-		cmd = cls._build_command(title, body, timeout_ms, replace=False)
+		cmd = cls._build_command(title, body, timeout_ms, replace=False, urgency=urgency, slot=slot)
 		try:
 			subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 		except Exception:
 			pass
 
 	@classmethod
-	def _send_replace(cls, title: str, body: str, timeout_ms: int | None, replace_id: str | None) -> str | None:
+	def _send_replace(cls,
+	                  title: str,
+	                  body: str,
+	                  timeout_ms: int | None,
+	                  replace_id: str | None,
+	                  urgency: str | None = None,
+	                  slot: str = "feedback") -> str | None:
 		"""Send a replacing notification and return its fresh ID."""
-		cmd = cls._build_command(title, body, timeout_ms, replace=True, replace_id=replace_id)
+		cmd = cls._build_command(title, body, timeout_ms, replace=True, replace_id=replace_id, urgency=urgency, slot=slot)
 		try:
 			result = subprocess.run(cmd, capture_output=True, text=True, timeout=2)
 		except Exception:
@@ -112,15 +135,19 @@ class NotificationService:
 	                   body: str = "",
 	                   timeout_ms: int | None = None,
 	                   replace: bool = False,
-	                   replace_id: str | None = None) -> list[str]:
+	                   replace_id: str | None = None,
+	                   urgency: str | None = None,
+	                   slot: str = "feedback") -> list[str]:
 		"""Build the notify-send command."""
 		cmd = [
 		    "notify-send",
 		    "-a",
 		    cls.APP_NAME,
 		    "-h",
-		    "string:x-canonical-private-synchronous:dictate-ptt-copilot",
+		    f"string:x-canonical-private-synchronous:dictate-ptt-copilot-{slot}",
 		]
+		if urgency:
+			cmd += ["-u", urgency]
 		if timeout_ms is not None:
 			cmd += ["-t", str(timeout_ms)]
 		if replace and replace_id:

@@ -54,6 +54,7 @@ class TranscriptionWorker:
 				# Release flag immediately after transcription
 				with self._transcribing_lock:
 					self._transcribing = False
+				NotificationService.close_current()
 
 				if text is None:
 					print("❌ Transcription échouée.", flush=True)
@@ -74,6 +75,7 @@ class TranscriptionWorker:
 
 			except Exception as e:
 				print(f"❌ Erreur transcription: {e}", flush=True)
+				NotificationService.close_current()
 				NotificationService.failed(f"Erreur: {e}")
 				with self._transcribing_lock:
 					self._transcribing = False

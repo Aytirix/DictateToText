@@ -5,7 +5,7 @@ import os
 import re
 import signal
 import time
-from threading import Thread
+from threading import Event, Thread
 
 import customtkinter as ctk
 
@@ -46,6 +46,8 @@ class DictatePTTApplication:
 		self._was_history_down = False
 		self._recording_started_at = None
 		self._tap_toggle_recording = False
+		self._recording_reminder_stop = None
+		self._recording_reminder_thread = None
 
 	def run(self) -> None:
 		"""Run the application"""
@@ -168,9 +170,27 @@ class DictatePTTApplication:
 	def _start_recording_reminder(self) -> None:
 		"""Show persistent recording notification."""
 		NotificationService.listening()
+		if self._recording_reminder_thread and self._recording_reminder_thread.is_alive():
+			return
+
+		stop_event = Event()
+		self._recording_reminder_stop = stop_event
+
+		def reminder_loop() -> None:
+			while not stop_event.wait(2.0):
+				if not self.recorder.is_recording:
+					break
+				NotificationService.listening()
+
+		self._recording_reminder_thread = Thread(target=reminder_loop, daemon=True)
+		self._recording_reminder_thread.start()
 
 	def _stop_recording_reminder(self) -> None:
 		"""Stop the toggle recording reminder."""
+		if self._recording_reminder_stop is not None:
+			self._recording_reminder_stop.set()
+			self._recording_reminder_stop = None
+		self._recording_reminder_thread = None
 		NotificationService.close_current()
 
 	def _show_history(self) -> None:

@@ -188,117 +188,117 @@
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L99",
-      "id": "py_application_rationale_99",
       "community": 4,
-      "norm_label": "keyboard event loop (runs in daemon thread)"
+      "norm_label": "keyboard event loop (runs in daemon thread)",
+      "id": "py_application_rationale_99"
     },
     {
       "label": "Show persistent recording notification.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L169",
-      "id": "py_application_rationale_169",
       "community": 4,
-      "norm_label": "show persistent recording notification."
+      "norm_label": "show persistent recording notification.",
+      "id": "py_application_rationale_169"
     },
     {
       "label": "Stop the toggle recording reminder.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L173",
-      "id": "py_application_rationale_173",
       "community": 4,
-      "norm_label": "stop the toggle recording reminder."
+      "norm_label": "stop the toggle recording reminder.",
+      "id": "py_application_rationale_173"
     },
     {
       "label": "Show or focus history window (called on main thread)",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L177",
-      "id": "py_application_rationale_177",
       "community": 4,
-      "norm_label": "show or focus history window (called on main thread)"
+      "norm_label": "show or focus history window (called on main thread)",
+      "id": "py_application_rationale_177"
     },
     {
       "label": "Create hidden CTk root when a graphical display is available.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L201",
-      "id": "py_application_rationale_201",
       "community": 4,
-      "norm_label": "create hidden ctk root when a graphical display is available."
+      "norm_label": "create hidden ctk root when a graphical display is available.",
+      "id": "py_application_rationale_201"
     },
     {
       "label": "Build likely graphical environments for Tk/XWayland.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L231",
-      "id": "py_application_rationale_231",
       "community": 4,
-      "norm_label": "build likely graphical environments for tk/xwayland."
+      "norm_label": "build likely graphical environments for tk/xwayland.",
+      "id": "py_application_rationale_231"
     },
     {
       "label": "Return a valid XDG runtime directory when available.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L276",
-      "id": "py_application_rationale_276",
       "community": 4,
-      "norm_label": "return a valid xdg runtime directory when available."
+      "norm_label": "return a valid xdg runtime directory when available.",
+      "id": "py_application_rationale_276"
     },
     {
       "label": "Return an existing Wayland socket name when possible.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L289",
-      "id": "py_application_rationale_289",
       "community": 4,
-      "norm_label": "return an existing wayland socket name when possible."
+      "norm_label": "return an existing wayland socket name when possible.",
+      "id": "py_application_rationale_289"
     },
     {
       "label": "Discover likely X11/XWayland DISPLAY values, prioritizing the current user.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L306",
-      "id": "py_application_rationale_306",
       "community": 4,
-      "norm_label": "discover likely x11/xwayland display values, prioritizing the current user."
+      "norm_label": "discover likely x11/xwayland display values, prioritizing the current user.",
+      "id": "py_application_rationale_306"
     },
     {
       "label": "Return existing Xauthority files that might grant access to XWayland.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L342",
-      "id": "py_application_rationale_342",
       "community": 4,
-      "norm_label": "return existing xauthority files that might grant access to xwayland."
+      "norm_label": "return existing xauthority files that might grant access to xwayland.",
+      "id": "py_application_rationale_342"
     },
     {
       "label": "Apply one GUI environment candidate to the current process.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L364",
-      "id": "py_application_rationale_364",
       "community": 4,
-      "norm_label": "apply one gui environment candidate to the current process."
+      "norm_label": "apply one gui environment candidate to the current process.",
+      "id": "py_application_rationale_364"
     },
     {
       "label": "Log when a missing or incomplete GUI environment was repaired automatically.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L375",
-      "id": "py_application_rationale_375",
       "community": 4,
-      "norm_label": "log when a missing or incomplete gui environment was repaired automatically."
+      "norm_label": "log when a missing or incomplete gui environment was repaired automatically.",
+      "id": "py_application_rationale_375"
     },
     {
       "label": "Parse a DISPLAY value like :1 or :1.0 into its numeric display id.",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L385",
-      "id": "py_application_rationale_385",
       "community": 2,
-      "norm_label": "parse a display value like :1 or :1.0 into its numeric display id."
+      "norm_label": "parse a display value like :1 or :1.0 into its numeric display id.",
+      "id": "py_application_rationale_385"
     },
     {
       "label": "config.py",
@@ -710,27 +710,27 @@
       "file_type": "rationale",
       "source_file": "app_config.py",
       "source_location": "L29",
-      "id": "py_app_config_rationale_29",
       "community": 2,
-      "norm_label": "reload runtime configuration from disk."
+      "norm_label": "reload runtime configuration from disk.",
+      "id": "py_app_config_rationale_29"
     },
     {
       "label": "Validate configuration paths",
       "file_type": "rationale",
       "source_file": "app_config.py",
       "source_location": "L57",
-      "id": "py_app_config_rationale_57",
       "community": 2,
-      "norm_label": "validate configuration paths"
+      "norm_label": "validate configuration paths",
+      "id": "py_app_config_rationale_57"
     },
     {
       "label": "Return True when at least one keyboard-like input device is readable.",
       "file_type": "rationale",
       "source_file": "app_config.py",
       "source_location": "L70",
-      "id": "py_app_config_rationale_70",
       "community": 2,
-      "norm_label": "return true when at least one keyboard-like input device is readable."
+      "norm_label": "return true when at least one keyboard-like input device is readable.",
+      "id": "py_app_config_rationale_70"
     },
     {
       "label": "history_manager.py",
@@ -1241,72 +1241,72 @@
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L11",
-      "id": "components_keyboard_handler_rationale_11",
       "community": 2,
-      "norm_label": "handle keyboard events and combos"
+      "norm_label": "handle keyboard events and combos",
+      "id": "components_keyboard_handler_rationale_11"
     },
     {
       "label": "Initialize keyboard devices.",
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L19",
-      "id": "components_keyboard_handler_rationale_19",
       "community": 2,
-      "norm_label": "initialize keyboard devices."
+      "norm_label": "initialize keyboard devices.",
+      "id": "components_keyboard_handler_rationale_19"
     },
     {
       "label": "Reload key combos from configuration.",
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L28",
-      "id": "components_keyboard_handler_rationale_28",
       "community": 2,
-      "norm_label": "reload key combos from configuration."
+      "norm_label": "reload key combos from configuration.",
+      "id": "components_keyboard_handler_rationale_28"
     },
     {
       "label": "Generator yielding keyboard events from all keyboard-like devices.",
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L33",
-      "id": "components_keyboard_handler_rationale_33",
       "community": 2,
-      "norm_label": "generator yielding keyboard events from all keyboard-like devices."
+      "norm_label": "generator yielding keyboard events from all keyboard-like devices.",
+      "id": "components_keyboard_handler_rationale_33"
     },
     {
       "label": "Open devices that can emit keyboard events.",
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L57",
-      "id": "components_keyboard_handler_rationale_57",
       "community": 2,
-      "norm_label": "open devices that can emit keyboard events."
+      "norm_label": "open devices that can emit keyboard events.",
+      "id": "components_keyboard_handler_rationale_57"
     },
     {
       "label": "Return True for devices worth listening to for hotkeys.",
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L79",
-      "id": "components_keyboard_handler_rationale_79",
       "community": 2,
-      "norm_label": "return true for devices worth listening to for hotkeys."
+      "norm_label": "return true for devices worth listening to for hotkeys.",
+      "id": "components_keyboard_handler_rationale_79"
     },
     {
       "label": "Check if copilot combo is pressed",
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L96",
-      "id": "components_keyboard_handler_rationale_96",
       "community": 2,
-      "norm_label": "check if copilot combo is pressed"
+      "norm_label": "check if copilot combo is pressed",
+      "id": "components_keyboard_handler_rationale_96"
     },
     {
       "label": "Check if history combo is pressed",
       "file_type": "rationale",
       "source_file": "components/keyboard_handler.py",
       "source_location": "L100",
-      "id": "components_keyboard_handler_rationale_100",
       "community": 2,
-      "norm_label": "check if history combo is pressed"
+      "norm_label": "check if history combo is pressed",
+      "id": "components_keyboard_handler_rationale_100"
     },
     {
       "label": "__init__.py",
@@ -1332,7 +1332,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L14",
       "id": "ui_history_window_ctk_enable_mousewheel_scroll",
-      "community": 8,
+      "community": 0,
       "norm_label": "_enable_mousewheel_scroll()"
     },
     {
@@ -1359,7 +1359,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L85",
       "id": "ui_history_window_ctk_historywindow_setup_ui",
-      "community": 8,
+      "community": 0,
       "norm_label": "._setup_ui()"
     },
     {
@@ -1512,7 +1512,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L707",
       "id": "ui_history_window_ctk_historywindow_refresh_audio_list",
-      "community": 8,
+      "community": 0,
       "norm_label": "._refresh_audio_list()"
     },
     {
@@ -1521,7 +1521,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L787",
       "id": "ui_history_window_ctk_historywindow_play_audio",
-      "community": 8,
+      "community": 0,
       "norm_label": "._play_audio()"
     },
     {
@@ -1530,7 +1530,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L809",
       "id": "ui_history_window_ctk_historywindow_delete_audio",
-      "community": 8,
+      "community": 0,
       "norm_label": "._delete_audio()"
     },
     {
@@ -1539,7 +1539,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L823",
       "id": "ui_history_window_ctk_historywindow_delete_all_audio",
-      "community": 8,
+      "community": 0,
       "norm_label": "._delete_all_audio()"
     },
     {
@@ -1557,7 +1557,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L851",
       "id": "ui_history_window_ctk_historywindow_update_title",
-      "community": 8,
+      "community": 0,
       "norm_label": ".update_title()"
     },
     {
@@ -1566,7 +1566,7 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L856",
       "id": "ui_history_window_ctk_historywindow_add_audio_tab",
-      "community": 8,
+      "community": 0,
       "norm_label": ".add_audio_tab()"
     },
     {
@@ -1610,7 +1610,7 @@
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L15",
-      "community": 8,
+      "community": 0,
       "norm_label": "enable mousewheel scrolling for a widget and all its children",
       "id": "ui_history_window_ctk_rationale_15"
     },
@@ -1628,180 +1628,180 @@
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L86",
-      "id": "ui_history_window_ctk_rationale_86",
-      "community": 8,
-      "norm_label": "setup the modern user interface"
+      "community": 0,
+      "norm_label": "setup the modern user interface",
+      "id": "ui_history_window_ctk_rationale_86"
     },
     {
       "label": "Clear all history with confirmation",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L420",
-      "id": "ui_history_window_ctk_rationale_420",
       "community": 0,
-      "norm_label": "clear all history with confirmation"
+      "norm_label": "clear all history with confirmation",
+      "id": "ui_history_window_ctk_rationale_420"
     },
     {
       "label": "Schedule periodic status updates",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L427",
-      "id": "ui_history_window_ctk_rationale_427",
       "community": 0,
-      "norm_label": "schedule periodic status updates"
+      "norm_label": "schedule periodic status updates",
+      "id": "ui_history_window_ctk_rationale_427"
     },
     {
       "label": "Update transcription status indicator",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L433",
-      "id": "ui_history_window_ctk_rationale_433",
       "community": 0,
-      "norm_label": "update transcription status indicator"
+      "norm_label": "update transcription status indicator",
+      "id": "ui_history_window_ctk_rationale_433"
     },
     {
       "label": "Update history content with optional search",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L442",
-      "id": "ui_history_window_ctk_rationale_442",
       "community": 0,
-      "norm_label": "update history content with optional search"
+      "norm_label": "update history content with optional search",
+      "id": "ui_history_window_ctk_rationale_442"
     },
     {
       "label": "Update system statistics",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L463",
-      "id": "ui_history_window_ctk_rationale_463",
       "community": 0,
-      "norm_label": "update system statistics"
+      "norm_label": "update system statistics",
+      "id": "ui_history_window_ctk_rationale_463"
     },
     {
       "label": "Update GPU information - supports NVIDIA, AMD, Intel",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L493",
-      "id": "ui_history_window_ctk_rationale_493",
       "community": 0,
-      "norm_label": "update gpu information - supports nvidia, amd, intel"
+      "norm_label": "update gpu information - supports nvidia, amd, intel",
+      "id": "ui_history_window_ctk_rationale_493"
     },
     {
       "label": "Toggle real-time logs",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L592",
-      "id": "ui_history_window_ctk_rationale_592",
       "community": 0,
-      "norm_label": "toggle real-time logs"
+      "norm_label": "toggle real-time logs",
+      "id": "ui_history_window_ctk_rationale_592"
     },
     {
       "label": "Start real-time log streaming",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L599",
-      "id": "ui_history_window_ctk_rationale_599",
       "community": 0,
-      "norm_label": "start real-time log streaming"
+      "norm_label": "start real-time log streaming",
+      "id": "ui_history_window_ctk_rationale_599"
     },
     {
       "label": "Stop real-time log streaming",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L620",
-      "id": "ui_history_window_ctk_rationale_620",
       "community": 0,
-      "norm_label": "stop real-time log streaming"
+      "norm_label": "stop real-time log streaming",
+      "id": "ui_history_window_ctk_rationale_620"
     },
     {
       "label": "Thread that reads logs from journalctl -f",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L625",
-      "id": "ui_history_window_ctk_rationale_625",
       "community": 0,
-      "norm_label": "thread that reads logs from journalctl -f"
+      "norm_label": "thread that reads logs from journalctl -f",
+      "id": "ui_history_window_ctk_rationale_625"
     },
     {
       "label": "Update logs widget from queue (called from main thread)",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L649",
-      "id": "ui_history_window_ctk_rationale_649",
       "community": 0,
-      "norm_label": "update logs widget from queue (called from main thread)"
+      "norm_label": "update logs widget from queue (called from main thread)",
+      "id": "ui_history_window_ctk_rationale_649"
     },
     {
       "label": "Refresh logs from journalctl",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L676",
-      "id": "ui_history_window_ctk_rationale_676",
       "community": 0,
-      "norm_label": "refresh logs from journalctl"
+      "norm_label": "refresh logs from journalctl",
+      "id": "ui_history_window_ctk_rationale_676"
     },
     {
       "label": "Refresh the list of audio files",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L708",
-      "id": "ui_history_window_ctk_rationale_708",
-      "community": 8,
-      "norm_label": "refresh the list of audio files"
+      "community": 0,
+      "norm_label": "refresh the list of audio files",
+      "id": "ui_history_window_ctk_rationale_708"
     },
     {
       "label": "Delete a single audio file",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L810",
-      "id": "ui_history_window_ctk_rationale_810",
-      "community": 8,
-      "norm_label": "delete a single audio file"
+      "community": 0,
+      "norm_label": "delete a single audio file",
+      "id": "ui_history_window_ctk_rationale_810"
     },
     {
       "label": "Delete all audio files",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L824",
-      "id": "ui_history_window_ctk_rationale_824",
-      "community": 8,
-      "norm_label": "delete all audio files"
+      "community": 0,
+      "norm_label": "delete all audio files",
+      "id": "ui_history_window_ctk_rationale_824"
     },
     {
       "label": "Bring window to front",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L847",
-      "id": "ui_history_window_ctk_rationale_847",
       "community": 0,
-      "norm_label": "bring window to front"
+      "norm_label": "bring window to front",
+      "id": "ui_history_window_ctk_rationale_847"
     },
     {
       "label": "Update window title with history size",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L852",
-      "id": "ui_history_window_ctk_rationale_852",
-      "community": 8,
-      "norm_label": "update window title with history size"
+      "community": 0,
+      "norm_label": "update window title with history size",
+      "id": "ui_history_window_ctk_rationale_852"
     },
     {
       "label": "Add the audio files tab dynamically",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L857",
-      "id": "ui_history_window_ctk_rationale_857",
-      "community": 8,
-      "norm_label": "add the audio files tab dynamically"
+      "community": 0,
+      "norm_label": "add the audio files tab dynamically",
+      "id": "ui_history_window_ctk_rationale_857"
     },
     {
       "label": "Remove the audio files tab dynamically",
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L904",
-      "id": "ui_history_window_ctk_rationale_904",
       "community": 0,
-      "norm_label": "remove the audio files tab dynamically"
+      "norm_label": "remove the audio files tab dynamically",
+      "id": "ui_history_window_ctk_rationale_904"
     },
     {
       "label": "settings_window_ctk.py",
@@ -1836,7 +1836,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L92",
       "id": "ui_settings_window_ctk_settingswindow_init",
-      "community": 1,
+      "community": 7,
       "norm_label": ".__init__()"
     },
     {
@@ -1854,7 +1854,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L117",
       "id": "ui_settings_window_ctk_settingswindow_setup_ui",
-      "community": 1,
+      "community": 7,
       "norm_label": "._setup_ui()"
     },
     {
@@ -1863,7 +1863,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L216",
       "id": "ui_settings_window_ctk_settingswindow_init_variables",
-      "community": 1,
+      "community": 7,
       "norm_label": "._init_variables()"
     },
     {
@@ -1944,7 +1944,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L419",
       "id": "ui_settings_window_ctk_settingswindow_show_models_settings",
-      "community": 9,
+      "community": 1,
       "norm_label": "._show_models_settings()"
     },
     {
@@ -1953,7 +1953,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L516",
       "id": "ui_settings_window_ctk_settingswindow_get_whisper_models",
-      "community": 9,
+      "community": 1,
       "norm_label": "._get_whisper_models()"
     },
     {
@@ -1962,7 +1962,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L549",
       "id": "ui_settings_window_ctk_settingswindow_sort_models",
-      "community": 9,
+      "community": 1,
       "norm_label": "._sort_models()"
     },
     {
@@ -1998,7 +1998,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L611",
       "id": "ui_settings_window_ctk_settingswindow_select_model",
-      "community": 9,
+      "community": 1,
       "norm_label": "._select_model()"
     },
     {
@@ -2007,7 +2007,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L616",
       "id": "ui_settings_window_ctk_settingswindow_download_model",
-      "community": 9,
+      "community": 1,
       "norm_label": "._download_model()"
     },
     {
@@ -2016,7 +2016,7 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L666",
       "id": "ui_settings_window_ctk_settingswindow_uninstall_model",
-      "community": 9,
+      "community": 1,
       "norm_label": "._uninstall_model()"
     },
     {
@@ -2231,369 +2231,369 @@
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L21",
-      "id": "ui_settings_window_ctk_rationale_21",
       "community": 7,
-      "norm_label": "enable mousewheel scrolling for a widget and all its children"
+      "norm_label": "enable mousewheel scrolling for a widget and all its children",
+      "id": "ui_settings_window_ctk_rationale_21"
     },
     {
       "label": "Modern settings window with CustomTkinter",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L46",
-      "id": "ui_settings_window_ctk_rationale_46",
       "community": 1,
-      "norm_label": "modern settings window with customtkinter"
+      "norm_label": "modern settings window with customtkinter",
+      "id": "ui_settings_window_ctk_rationale_46"
     },
     {
       "label": "Make window modal after it's viewable",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L111",
-      "id": "ui_settings_window_ctk_rationale_111",
       "community": 1,
-      "norm_label": "make window modal after it's viewable"
+      "norm_label": "make window modal after it's viewable",
+      "id": "ui_settings_window_ctk_rationale_111"
     },
     {
       "label": "Setup modern settings UI",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L118",
-      "id": "ui_settings_window_ctk_rationale_118",
-      "community": 1,
-      "norm_label": "setup modern settings ui"
+      "community": 7,
+      "norm_label": "setup modern settings ui",
+      "id": "ui_settings_window_ctk_rationale_118"
     },
     {
       "label": "Initialize all configuration variables",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L217",
-      "id": "ui_settings_window_ctk_rationale_217",
-      "community": 1,
-      "norm_label": "initialize all configuration variables"
+      "community": 7,
+      "norm_label": "initialize all configuration variables",
+      "id": "ui_settings_window_ctk_rationale_217"
     },
     {
       "label": "Switch to a different settings category",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L263",
-      "id": "ui_settings_window_ctk_rationale_263",
       "community": 1,
-      "norm_label": "switch to a different settings category"
+      "norm_label": "switch to a different settings category",
+      "id": "ui_settings_window_ctk_rationale_263"
     },
     {
       "label": "Show interface settings",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L300",
-      "id": "ui_settings_window_ctk_rationale_300",
       "community": 1,
-      "norm_label": "show interface settings"
+      "norm_label": "show interface settings",
+      "id": "ui_settings_window_ctk_rationale_300"
     },
     {
       "label": "Show Whisper settings",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L334",
-      "id": "ui_settings_window_ctk_rationale_334",
       "community": 1,
-      "norm_label": "show whisper settings"
+      "norm_label": "show whisper settings",
+      "id": "ui_settings_window_ctk_rationale_334"
     },
     {
       "label": "Show history settings",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L370",
-      "id": "ui_settings_window_ctk_rationale_370",
       "community": 1,
-      "norm_label": "show history settings"
+      "norm_label": "show history settings",
+      "id": "ui_settings_window_ctk_rationale_370"
     },
     {
       "label": "Show notification settings",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L385",
-      "id": "ui_settings_window_ctk_rationale_385",
       "community": 1,
-      "norm_label": "show notification settings"
+      "norm_label": "show notification settings",
+      "id": "ui_settings_window_ctk_rationale_385"
     },
     {
       "label": "Show behavior settings",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L398",
-      "id": "ui_settings_window_ctk_rationale_398",
       "community": 1,
-      "norm_label": "show behavior settings"
+      "norm_label": "show behavior settings",
+      "id": "ui_settings_window_ctk_rationale_398"
     },
     {
       "label": "Show Whisper models management",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L420",
-      "id": "ui_settings_window_ctk_rationale_420",
-      "community": 9,
-      "norm_label": "show whisper models management"
+      "community": 1,
+      "norm_label": "show whisper models management",
+      "id": "ui_settings_window_ctk_rationale_420"
     },
     {
       "label": "Return models supported by the local whisper.cpp install, plus installed files.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L517",
-      "id": "ui_settings_window_ctk_rationale_517",
-      "community": 9,
-      "norm_label": "return models supported by the local whisper.cpp install, plus installed files."
+      "community": 1,
+      "norm_label": "return models supported by the local whisper.cpp install, plus installed files.",
+      "id": "ui_settings_window_ctk_rationale_517"
     },
     {
       "label": "Sort current and installed models first, then keep whisper.cpp order.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L550",
-      "id": "ui_settings_window_ctk_rationale_550",
-      "community": 9,
-      "norm_label": "sort current and installed models first, then keep whisper.cpp order."
+      "community": 1,
+      "norm_label": "sort current and installed models first, then keep whisper.cpp order.",
+      "id": "ui_settings_window_ctk_rationale_550"
     },
     {
       "label": "Build a UI-friendly description for a model variant.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L563",
-      "id": "ui_settings_window_ctk_rationale_563",
       "community": 7,
-      "norm_label": "build a ui-friendly description for a model variant."
+      "norm_label": "build a ui-friendly description for a model variant.",
+      "id": "ui_settings_window_ctk_rationale_563"
     },
     {
       "label": "Extract quantization suffix like q5_0 or q8_0 when present.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L594",
-      "id": "ui_settings_window_ctk_rationale_594",
       "community": 0,
-      "norm_label": "extract quantization suffix like q5_0 or q8_0 when present."
+      "norm_label": "extract quantization suffix like q5_0 or q8_0 when present.",
+      "id": "ui_settings_window_ctk_rationale_594"
     },
     {
       "label": "Reduce a variant name to its base family.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L600",
-      "id": "ui_settings_window_ctk_rationale_600",
       "community": 0,
-      "norm_label": "reduce a variant name to its base family."
+      "norm_label": "reduce a variant name to its base family.",
+      "id": "ui_settings_window_ctk_rationale_600"
     },
     {
       "label": "Select a different Whisper model",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L612",
-      "id": "ui_settings_window_ctk_rationale_612",
-      "community": 9,
-      "norm_label": "select a different whisper model"
+      "community": 1,
+      "norm_label": "select a different whisper model",
+      "id": "ui_settings_window_ctk_rationale_612"
     },
     {
       "label": "Download a Whisper model",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L617",
-      "id": "ui_settings_window_ctk_rationale_617",
-      "community": 9,
-      "norm_label": "download a whisper model"
+      "community": 1,
+      "norm_label": "download a whisper model",
+      "id": "ui_settings_window_ctk_rationale_617"
     },
     {
       "label": "Uninstall a Whisper model",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L667",
-      "id": "ui_settings_window_ctk_rationale_667",
-      "community": 9,
-      "norm_label": "uninstall a whisper model"
+      "community": 1,
+      "norm_label": "uninstall a whisper model",
+      "id": "ui_settings_window_ctk_rationale_667"
     },
     {
       "label": "Browse for whisper path",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L694",
-      "id": "ui_settings_window_ctk_rationale_694",
       "community": 1,
-      "norm_label": "browse for whisper path"
+      "norm_label": "browse for whisper path",
+      "id": "ui_settings_window_ctk_rationale_694"
     },
     {
       "label": "Create category title",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L705",
-      "id": "ui_settings_window_ctk_rationale_705",
       "community": 1,
-      "norm_label": "create category title"
+      "norm_label": "create category title",
+      "id": "ui_settings_window_ctk_rationale_705"
     },
     {
       "label": "Create an option menu with label",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L716",
-      "id": "ui_settings_window_ctk_rationale_716",
       "community": 1,
-      "norm_label": "create an option menu with label"
+      "norm_label": "create an option menu with label",
+      "id": "ui_settings_window_ctk_rationale_716"
     },
     {
       "label": "Create a slider with label and value display",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L733",
-      "id": "ui_settings_window_ctk_rationale_733",
       "community": 1,
-      "norm_label": "create a slider with label and value display"
+      "norm_label": "create a slider with label and value display",
+      "id": "ui_settings_window_ctk_rationale_733"
     },
     {
       "label": "Create a switch with label",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L753",
-      "id": "ui_settings_window_ctk_rationale_753",
       "community": 1,
-      "norm_label": "create a switch with label"
+      "norm_label": "create a switch with label",
+      "id": "ui_settings_window_ctk_rationale_753"
     },
     {
       "label": "Create a key combo capture control.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L764",
-      "id": "ui_settings_window_ctk_rationale_764",
       "community": 1,
-      "norm_label": "create a key combo capture control."
+      "norm_label": "create a key combo capture control.",
+      "id": "ui_settings_window_ctk_rationale_764"
     },
     {
       "label": "Create an option menu with help tooltip",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L789",
-      "id": "ui_settings_window_ctk_rationale_789",
       "community": 1,
-      "norm_label": "create an option menu with help tooltip"
+      "norm_label": "create an option menu with help tooltip",
+      "id": "ui_settings_window_ctk_rationale_789"
     },
     {
       "label": "Create a slider with help tooltip",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L827",
-      "id": "ui_settings_window_ctk_rationale_827",
       "community": 1,
-      "norm_label": "create a slider with help tooltip"
+      "norm_label": "create a slider with help tooltip",
+      "id": "ui_settings_window_ctk_rationale_827"
     },
     {
       "label": "Create a switch with help tooltip",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L861",
-      "id": "ui_settings_window_ctk_rationale_861",
       "community": 1,
-      "norm_label": "create a switch with help tooltip"
+      "norm_label": "create a switch with help tooltip",
+      "id": "ui_settings_window_ctk_rationale_861"
     },
     {
       "label": "Format a key combo for editing.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L892",
-      "id": "ui_settings_window_ctk_rationale_892",
       "community": 0,
-      "norm_label": "format a key combo for editing."
+      "norm_label": "format a key combo for editing.",
+      "id": "ui_settings_window_ctk_rationale_892"
     },
     {
       "label": "Start capturing the next key combo.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L896",
-      "id": "ui_settings_window_ctk_rationale_896",
       "community": 1,
-      "norm_label": "start capturing the next key combo."
+      "norm_label": "start capturing the next key combo.",
+      "id": "ui_settings_window_ctk_rationale_896"
     },
     {
       "label": "Capture the next key combo from keyboard-like evdev devices.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L909",
-      "id": "ui_settings_window_ctk_rationale_909",
       "community": 7,
-      "norm_label": "capture the next key combo from keyboard-like evdev devices."
+      "norm_label": "capture the next key combo from keyboard-like evdev devices.",
+      "id": "ui_settings_window_ctk_rationale_909"
     },
     {
       "label": "Open keyboard-like devices for shortcut capture.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L943",
-      "id": "ui_settings_window_ctk_rationale_943",
       "community": 3,
-      "norm_label": "open keyboard-like devices for shortcut capture."
+      "norm_label": "open keyboard-like devices for shortcut capture.",
+      "id": "ui_settings_window_ctk_rationale_943"
     },
     {
       "label": "Return True for devices worth listening to during shortcut capture.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L968",
-      "id": "ui_settings_window_ctk_rationale_968",
       "community": 0,
-      "norm_label": "return true for devices worth listening to during shortcut capture."
+      "norm_label": "return true for devices worth listening to during shortcut capture.",
+      "id": "ui_settings_window_ctk_rationale_968"
     },
     {
       "label": "Update the currently captured key combo.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L985",
-      "id": "ui_settings_window_ctk_rationale_985",
       "community": 1,
-      "norm_label": "update the currently captured key combo."
+      "norm_label": "update the currently captured key combo.",
+      "id": "ui_settings_window_ctk_rationale_985"
     },
     {
       "label": "Finish key capture with the selected combo.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L990",
-      "id": "ui_settings_window_ctk_rationale_990",
       "community": 7,
-      "norm_label": "finish key capture with the selected combo."
+      "norm_label": "finish key capture with the selected combo.",
+      "id": "ui_settings_window_ctk_rationale_990"
     },
     {
       "label": "Restore previous value when key capture fails.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L998",
-      "id": "ui_settings_window_ctk_rationale_998",
       "community": 1,
-      "norm_label": "restore previous value when key capture fails."
+      "norm_label": "restore previous value when key capture fails.",
+      "id": "ui_settings_window_ctk_rationale_998"
     },
     {
       "label": "Return True for modifier keys that can prefix a combo.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L1008",
-      "id": "ui_settings_window_ctk_rationale_1008",
       "community": 0,
-      "norm_label": "return true for modifier keys that can prefix a combo."
+      "norm_label": "return true for modifier keys that can prefix a combo.",
+      "id": "ui_settings_window_ctk_rationale_1008"
     },
     {
       "label": "Parse and validate an evdev key combo.",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L1022",
-      "id": "ui_settings_window_ctk_rationale_1022",
       "community": 0,
-      "norm_label": "parse and validate an evdev key combo."
+      "norm_label": "parse and validate an evdev key combo.",
+      "id": "ui_settings_window_ctk_rationale_1022"
     },
     {
       "label": "Apply all settings with hot-reload",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L1034",
-      "id": "ui_settings_window_ctk_rationale_1034",
       "community": 7,
-      "norm_label": "apply all settings with hot-reload"
+      "norm_label": "apply all settings with hot-reload",
+      "id": "ui_settings_window_ctk_rationale_1034"
     },
     {
       "label": "Reset to default settings",
       "file_type": "rationale",
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L1117",
-      "id": "ui_settings_window_ctk_rationale_1117",
       "community": 1,
-      "norm_label": "reset to default settings"
+      "norm_label": "reset to default settings",
+      "id": "ui_settings_window_ctk_rationale_1117"
     },
     {
       "label": "__init__.py",
@@ -2617,7 +2617,7 @@
       "label": "NotificationService",
       "file_type": "code",
       "source_file": "services/notification.py",
-      "source_location": "L8",
+      "source_location": "L9",
       "id": "services_notification_notificationservice",
       "community": 6,
       "norm_label": "notificationservice"
@@ -2626,7 +2626,7 @@
       "label": "send()",
       "file_type": "code",
       "source_file": "services/notification.py",
-      "source_location": "L15",
+      "source_location": "L17",
       "id": "services_notification_send",
       "community": 6,
       "norm_label": "send()"
@@ -2635,7 +2635,7 @@
       "label": "listening()",
       "file_type": "code",
       "source_file": "services/notification.py",
-      "source_location": "L20",
+      "source_location": "L22",
       "id": "services_notification_listening",
       "community": 6,
       "norm_label": "listening()"
@@ -2644,7 +2644,7 @@
       "label": "transcribing()",
       "file_type": "code",
       "source_file": "services/notification.py",
-      "source_location": "L25",
+      "source_location": "L27",
       "id": "services_notification_transcribing",
       "community": 6,
       "norm_label": "transcribing()"
@@ -2653,7 +2653,7 @@
       "label": "copied()",
       "file_type": "code",
       "source_file": "services/notification.py",
-      "source_location": "L30",
+      "source_location": "L32",
       "id": "services_notification_copied",
       "community": 6,
       "norm_label": "copied()"
@@ -2662,73 +2662,127 @@
       "label": "failed()",
       "file_type": "code",
       "source_file": "services/notification.py",
-      "source_location": "L35",
+      "source_location": "L37",
       "id": "services_notification_failed",
       "community": 6,
       "norm_label": "failed()"
     },
     {
+      "label": "close_current()",
+      "file_type": "code",
+      "source_file": "services/notification.py",
+      "source_location": "L42",
+      "id": "services_notification_close_current",
+      "community": 6,
+      "norm_label": "close_current()"
+    },
+    {
+      "label": "_send_replace()",
+      "file_type": "code",
+      "source_file": "services/notification.py",
+      "source_location": "L96",
+      "id": "services_notification_send_replace",
+      "community": 6,
+      "norm_label": "_send_replace()"
+    },
+    {
+      "label": "_build_command()",
+      "file_type": "code",
+      "source_file": "services/notification.py",
+      "source_location": "L110",
+      "id": "services_notification_build_command",
+      "community": 6,
+      "norm_label": "_build_command()"
+    },
+    {
       "label": "Handle system notifications",
       "file_type": "rationale",
       "source_file": "services/notification.py",
-      "source_location": "L9",
+      "source_location": "L10",
+      "id": "services_notification_rationale_10",
       "community": 6,
-      "norm_label": "handle system notifications",
-      "id": "services_notification_rationale_9"
+      "norm_label": "handle system notifications"
     },
     {
       "label": "Send a system notification without blocking",
       "file_type": "rationale",
       "source_file": "services/notification.py",
-      "source_location": "L16",
-      "id": "services_notification_rationale_16",
-      "community": 10,
+      "source_location": "L18",
+      "id": "services_notification_rationale_18",
+      "community": 8,
       "norm_label": "send a system notification without blocking"
     },
     {
       "label": "Show persistent listening notification.",
       "file_type": "rationale",
       "source_file": "services/notification.py",
-      "source_location": "L21",
-      "id": "services_notification_rationale_21",
-      "community": 11,
+      "source_location": "L23",
+      "id": "services_notification_rationale_23",
+      "community": 9,
       "norm_label": "show persistent listening notification."
     },
     {
       "label": "Show persistent transcribing notification.",
       "file_type": "rationale",
       "source_file": "services/notification.py",
-      "source_location": "L26",
-      "id": "services_notification_rationale_26",
-      "community": 12,
+      "source_location": "L28",
+      "id": "services_notification_rationale_28",
+      "community": 10,
       "norm_label": "show persistent transcribing notification."
     },
     {
       "label": "Show short success notification.",
       "file_type": "rationale",
       "source_file": "services/notification.py",
-      "source_location": "L31",
-      "id": "services_notification_rationale_31",
-      "community": 13,
+      "source_location": "L33",
+      "id": "services_notification_rationale_33",
+      "community": 11,
       "norm_label": "show short success notification."
     },
     {
       "label": "Show short error notification.",
       "file_type": "rationale",
       "source_file": "services/notification.py",
-      "source_location": "L36",
-      "id": "services_notification_rationale_36",
-      "community": 14,
+      "source_location": "L38",
+      "id": "services_notification_rationale_38",
+      "community": 12,
       "norm_label": "show short error notification."
+    },
+    {
+      "label": "Close the currently tracked notification when the server supports it.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L43",
+      "id": "services_notification_rationale_43",
+      "community": 13,
+      "norm_label": "close the currently tracked notification when the server supports it."
     },
     {
       "label": "Send a notification, optionally replacing the previous app notification.",
       "file_type": "rationale",
       "source_file": "services/notification.py",
-      "source_location": "L41",
-      "id": "services_notification_rationale_41",
-      "community": 15,
+      "source_location": "L74",
+      "id": "services_notification_rationale_74",
+      "community": 14,
       "norm_label": "send a notification, optionally replacing the previous app notification."
+    },
+    {
+      "label": "Send a replacing notification and return its fresh ID.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L97",
+      "id": "services_notification_rationale_97",
+      "community": 15,
+      "norm_label": "send a replacing notification and return its fresh id."
+    },
+    {
+      "label": "Build the notify-send command.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L116",
+      "id": "services_notification_rationale_116",
+      "community": 16,
+      "norm_label": "build the notify-send command."
     },
     {
       "label": "transcription.py",
@@ -2816,7 +2870,7 @@
       "file_type": "rationale",
       "source_file": "services/transcription.py",
       "source_location": "L62",
-      "community": 16,
+      "community": 17,
       "norm_label": "run whisper-cli and handle timeouts.",
       "id": "services_transcription_rationale_62"
     },
@@ -2825,7 +2879,7 @@
       "file_type": "rationale",
       "source_file": "services/transcription.py",
       "source_location": "L71",
-      "community": 17,
+      "community": 18,
       "norm_label": "return true when whisper.cpp failed because cuda ran out of memory.",
       "id": "services_transcription_rationale_71"
     },
@@ -2875,11 +2929,74 @@
       "id": "services_clipboard_rationale_16"
     },
     {
+      "label": "Handle system notifications",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L9",
+      "community": 19,
+      "norm_label": "handle system notifications",
+      "id": "services_notification_rationale_9"
+    },
+    {
+      "label": "Send a system notification without blocking",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L16",
+      "community": 20,
+      "norm_label": "send a system notification without blocking",
+      "id": "services_notification_rationale_16"
+    },
+    {
+      "label": "Show persistent listening notification.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L21",
+      "community": 21,
+      "norm_label": "show persistent listening notification.",
+      "id": "services_notification_rationale_21"
+    },
+    {
+      "label": "Show persistent transcribing notification.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L26",
+      "community": 22,
+      "norm_label": "show persistent transcribing notification.",
+      "id": "services_notification_rationale_26"
+    },
+    {
+      "label": "Show short success notification.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L31",
+      "community": 23,
+      "norm_label": "show short success notification.",
+      "id": "services_notification_rationale_31"
+    },
+    {
+      "label": "Show short error notification.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L36",
+      "community": 24,
+      "norm_label": "show short error notification.",
+      "id": "services_notification_rationale_36"
+    },
+    {
+      "label": "Send a notification, optionally replacing the previous app notification.",
+      "file_type": "rationale",
+      "source_file": "services/notification.py",
+      "source_location": "L41",
+      "community": 25,
+      "norm_label": "send a notification, optionally replacing the previous app notification.",
+      "id": "services_notification_rationale_41"
+    },
+    {
       "label": "Keyboard event loop (runs in daemon thread)",
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L97",
-      "community": 18,
+      "community": 26,
       "norm_label": "keyboard event loop (runs in daemon thread)",
       "id": "py_application_rationale_97"
     },
@@ -2888,7 +3005,7 @@
       "file_type": "rationale",
       "source_file": "application.py",
       "source_location": "L147",
-      "community": 19,
+      "community": 27,
       "norm_label": "show or focus history window (called on main thread)",
       "id": "py_application_rationale_147"
     },
@@ -2978,7 +3095,7 @@
       "file_type": "rationale",
       "source_file": "app_config.py",
       "source_location": "L53",
-      "community": 20,
+      "community": 28,
       "norm_label": "validate configuration paths",
       "id": "py_app_config_rationale_53"
     },
@@ -3131,7 +3248,7 @@
       "file_type": "rationale",
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L648",
-      "community": 21,
+      "community": 29,
       "norm_label": "update logs widget from queue (called from main thread)",
       "id": "ui_history_window_ctk_rationale_648"
     },
@@ -3482,7 +3599,7 @@
       "file_type": "rationale",
       "source_file": "services/notification.py",
       "source_location": "L13",
-      "community": 22,
+      "community": 30,
       "norm_label": "send a system notification without blocking",
       "id": "services_notification_rationale_13"
     }
@@ -4228,9 +4345,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_169",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_169",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4240,9 +4357,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_173",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_173",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4252,9 +4369,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_201",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_201",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4264,9 +4381,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_231",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_231",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4276,9 +4393,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_276",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_276",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4288,9 +4405,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_289",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_289",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4300,9 +4417,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_306",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_306",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4312,9 +4429,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_342",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_342",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4324,9 +4441,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_364",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_364",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4336,9 +4453,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_375",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_375",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "uses",
@@ -4348,9 +4465,9 @@
       "weight": 0.8,
       "_src": "py_application_rationale_385",
       "_tgt": "py_app_config_appconfig",
+      "confidence_score": 0.5,
       "source": "py_application_rationale_385",
-      "target": "py_app_config_appconfig",
-      "confidence_score": 0.5
+      "target": "py_app_config_appconfig"
     },
     {
       "relation": "contains",
@@ -4767,8 +4884,8 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L59",
       "weight": 1.0,
-      "_src": "components_keyboard_handler_keyboardhandler_discover_keyboard_devices",
-      "_tgt": "py_config_config_set",
+      "_src": "py_config_config_set",
+      "_tgt": "components_keyboard_handler_keyboardhandler_discover_keyboard_devices",
       "source": "py_config_config_set",
       "target": "components_keyboard_handler_keyboardhandler_discover_keyboard_devices"
     },
@@ -4779,8 +4896,8 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L83",
       "weight": 1.0,
-      "_src": "components_keyboard_handler_is_keyboard_like",
-      "_tgt": "py_config_config_set",
+      "_src": "py_config_config_set",
+      "_tgt": "components_keyboard_handler_is_keyboard_like",
       "source": "py_config_config_set",
       "target": "components_keyboard_handler_is_keyboard_like"
     },
@@ -4791,8 +4908,8 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L946",
       "weight": 1.0,
-      "_src": "ui_settings_window_ctk_settingswindow_capture_devices",
-      "_tgt": "py_config_config_set",
+      "_src": "py_config_config_set",
+      "_tgt": "ui_settings_window_ctk_settingswindow_capture_devices",
       "source": "py_config_config_set",
       "target": "ui_settings_window_ctk_settingswindow_capture_devices"
     },
@@ -4803,8 +4920,8 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L972",
       "weight": 1.0,
-      "_src": "ui_settings_window_ctk_is_capture_device",
-      "_tgt": "py_config_config_set",
+      "_src": "py_config_config_set",
+      "_tgt": "ui_settings_window_ctk_is_capture_device",
       "source": "py_config_config_set",
       "target": "ui_settings_window_ctk_is_capture_device"
     },
@@ -5186,11 +5303,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_11",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_11",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_11",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_11"
     },
     {
       "relation": "uses",
@@ -5198,11 +5315,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_19",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_19",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_19",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_19"
     },
     {
       "relation": "uses",
@@ -5210,11 +5327,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_28",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_28",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_28",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_28"
     },
     {
       "relation": "uses",
@@ -5222,11 +5339,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_33",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_33",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_33",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_33"
     },
     {
       "relation": "uses",
@@ -5234,11 +5351,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_57",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_57",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_57",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_57"
     },
     {
       "relation": "uses",
@@ -5246,11 +5363,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_79",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_79",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_79",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_79"
     },
     {
       "relation": "uses",
@@ -5258,11 +5375,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_96",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_96",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_96",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_96"
     },
     {
       "relation": "uses",
@@ -5270,11 +5387,11 @@
       "source_file": "components/keyboard_handler.py",
       "source_location": "L7",
       "weight": 0.8,
-      "_src": "components_keyboard_handler_rationale_100",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "components_keyboard_handler_rationale_100",
+      "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
-      "target": "components_keyboard_handler_rationale_100",
-      "confidence_score": 0.5
+      "target": "components_keyboard_handler_rationale_100"
     },
     {
       "relation": "uses",
@@ -5282,8 +5399,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_170",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_170",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_170"
@@ -5294,8 +5411,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_200",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_200",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_200"
@@ -5306,8 +5423,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_245",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_245",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_245"
@@ -5318,8 +5435,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_258",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_258",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_258"
@@ -5330,8 +5447,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_275",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_275",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_275"
@@ -5342,8 +5459,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_311",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_311",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_311"
@@ -5354,8 +5471,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_333",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_333",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_333"
@@ -5366,8 +5483,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_344",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_344",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_344"
@@ -5378,8 +5495,8 @@
       "source_file": "application.py",
       "source_location": "L13",
       "weight": 0.8,
-      "_src": "py_application_rationale_354",
-      "_tgt": "py_app_config_appconfig",
+      "_src": "py_app_config_appconfig",
+      "_tgt": "py_application_rationale_354",
       "confidence_score": 0.5,
       "source": "py_app_config_appconfig",
       "target": "py_application_rationale_354"
@@ -6878,11 +6995,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_21",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_21",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_21",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_21"
     },
     {
       "relation": "uses",
@@ -6890,11 +7007,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_46",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_46",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_46",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_46"
     },
     {
       "relation": "uses",
@@ -6902,11 +7019,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_111",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_111",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_111",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_111"
     },
     {
       "relation": "uses",
@@ -6914,11 +7031,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_118",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_118",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_118",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_118"
     },
     {
       "relation": "uses",
@@ -6926,11 +7043,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_217",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_217",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_217",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_217"
     },
     {
       "relation": "uses",
@@ -6938,11 +7055,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_263",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_263",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_263",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_263"
     },
     {
       "relation": "uses",
@@ -6950,11 +7067,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_300",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_300",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_300",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_300"
     },
     {
       "relation": "uses",
@@ -6962,11 +7079,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_334",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_334",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_334",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_334"
     },
     {
       "relation": "uses",
@@ -6974,11 +7091,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_370",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_370",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_370",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_370"
     },
     {
       "relation": "uses",
@@ -6986,11 +7103,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_385",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_385",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_385",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_385"
     },
     {
       "relation": "uses",
@@ -6998,11 +7115,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_398",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_398",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_398",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_398"
     },
     {
       "relation": "uses",
@@ -7010,11 +7127,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_420",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_420",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_420",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_420"
     },
     {
       "relation": "uses",
@@ -7022,11 +7139,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_517",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_517",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_517",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_517"
     },
     {
       "relation": "uses",
@@ -7034,11 +7151,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_550",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_550",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_550",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_550"
     },
     {
       "relation": "uses",
@@ -7046,11 +7163,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_563",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_563",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_563",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_563"
     },
     {
       "relation": "uses",
@@ -7058,11 +7175,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_594",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_594",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_594",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_594"
     },
     {
       "relation": "uses",
@@ -7070,11 +7187,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_600",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_600",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_600",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_600"
     },
     {
       "relation": "uses",
@@ -7082,11 +7199,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_612",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_612",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_612",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_612"
     },
     {
       "relation": "uses",
@@ -7094,11 +7211,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_617",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_617",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_617",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_617"
     },
     {
       "relation": "uses",
@@ -7106,11 +7223,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_667",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_667",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_667",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_667"
     },
     {
       "relation": "uses",
@@ -7118,11 +7235,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_694",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_694",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_694",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_694"
     },
     {
       "relation": "uses",
@@ -7130,11 +7247,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_705",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_705",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_705",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_705"
     },
     {
       "relation": "uses",
@@ -7142,11 +7259,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_716",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_716",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_716",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_716"
     },
     {
       "relation": "uses",
@@ -7154,11 +7271,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_733",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_733",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_733",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_733"
     },
     {
       "relation": "uses",
@@ -7166,11 +7283,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_753",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_753",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_753",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_753"
     },
     {
       "relation": "uses",
@@ -7178,11 +7295,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_764",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_764",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_764",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_764"
     },
     {
       "relation": "uses",
@@ -7190,11 +7307,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_789",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_789",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_789",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_789"
     },
     {
       "relation": "uses",
@@ -7202,11 +7319,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_827",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_827",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_827",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_827"
     },
     {
       "relation": "uses",
@@ -7214,11 +7331,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_861",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_861",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_861",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_861"
     },
     {
       "relation": "uses",
@@ -7226,11 +7343,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_892",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_892",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_892",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_892"
     },
     {
       "relation": "uses",
@@ -7238,11 +7355,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_896",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_896",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_896",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_896"
     },
     {
       "relation": "uses",
@@ -7250,11 +7367,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_909",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_909",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_909",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_909"
     },
     {
       "relation": "uses",
@@ -7262,11 +7379,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_943",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_943",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_943",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_943"
     },
     {
       "relation": "uses",
@@ -7274,11 +7391,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_968",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_968",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_968",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_968"
     },
     {
       "relation": "uses",
@@ -7286,11 +7403,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_985",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_985",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_985",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_985"
     },
     {
       "relation": "uses",
@@ -7298,11 +7415,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_990",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_990",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_990",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_990"
     },
     {
       "relation": "uses",
@@ -7310,11 +7427,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_998",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_998",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_998",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_998"
     },
     {
       "relation": "uses",
@@ -7322,11 +7439,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_1008",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_1008",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_1008",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_1008"
     },
     {
       "relation": "uses",
@@ -7334,11 +7451,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_1022",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_1022",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_1022",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_1022"
     },
     {
       "relation": "uses",
@@ -7346,11 +7463,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_1034",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_1034",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_1034",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_1034"
     },
     {
       "relation": "uses",
@@ -7358,11 +7475,11 @@
       "source_file": "ui/settings_window_ctk.py",
       "source_location": "L17",
       "weight": 0.8,
-      "_src": "ui_settings_window_ctk_rationale_1117",
-      "_tgt": "ui_history_window_ctk_historywindow",
+      "_src": "ui_history_window_ctk_historywindow",
+      "_tgt": "ui_settings_window_ctk_rationale_1117",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_historywindow",
-      "target": "ui_settings_window_ctk_rationale_1117",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_rationale_1117"
     },
     {
       "relation": "uses",
@@ -8248,9 +8365,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_86",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_86",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8260,9 +8377,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_420",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_420",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8272,9 +8389,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_427",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_427",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8284,9 +8401,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_433",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_433",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8296,9 +8413,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_442",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_442",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8308,9 +8425,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_463",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_463",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8320,9 +8437,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_493",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_493",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8332,9 +8449,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_592",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_592",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8344,9 +8461,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_599",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_599",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8356,9 +8473,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_620",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_620",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8368,9 +8485,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_625",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_625",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8380,9 +8497,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_676",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_676",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8392,9 +8509,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_708",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_708",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8404,9 +8521,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_810",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_810",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8416,9 +8533,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_824",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_824",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8428,9 +8545,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_847",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_847",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8440,9 +8557,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_852",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_852",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8452,9 +8569,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_857",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_857",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "uses",
@@ -8464,9 +8581,9 @@
       "weight": 0.8,
       "_src": "ui_history_window_ctk_rationale_904",
       "_tgt": "ui_settings_window_ctk_settingswindow",
+      "confidence_score": 0.5,
       "source": "ui_history_window_ctk_rationale_904",
-      "target": "ui_settings_window_ctk_settingswindow",
-      "confidence_score": 0.5
+      "target": "ui_settings_window_ctk_settingswindow"
     },
     {
       "relation": "contains",
@@ -9062,8 +9179,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_85",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_85",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_85"
@@ -9074,8 +9191,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_419",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_419",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_419"
@@ -9086,8 +9203,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_426",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_426",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_426"
@@ -9098,8 +9215,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_432",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_432",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_432"
@@ -9110,8 +9227,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_441",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_441",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_441"
@@ -9122,8 +9239,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_462",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_462",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_462"
@@ -9134,8 +9251,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_492",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_492",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_492"
@@ -9146,8 +9263,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_591",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_591",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_591"
@@ -9158,8 +9275,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_598",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_598",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_598"
@@ -9170,8 +9287,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_619",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_619",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_619"
@@ -9182,8 +9299,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_624",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_624",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_624"
@@ -9194,8 +9311,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_675",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_675",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_675"
@@ -9206,8 +9323,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_707",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_707",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_707"
@@ -9218,8 +9335,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_809",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_809",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_809"
@@ -9230,8 +9347,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_823",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_823",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_823"
@@ -9242,8 +9359,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_846",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_846",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_846"
@@ -9254,8 +9371,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_851",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_851",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_851"
@@ -9266,8 +9383,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_856",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_856",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_856"
@@ -9278,8 +9395,8 @@
       "source_file": "ui/history_window_ctk.py",
       "source_location": "L924",
       "weight": 0.8,
-      "_src": "ui_history_window_ctk_rationale_903",
-      "_tgt": "ui_settings_window_ctk_settingswindow",
+      "_src": "ui_settings_window_ctk_settingswindow",
+      "_tgt": "ui_history_window_ctk_rationale_903",
       "confidence_score": 0.5,
       "source": "ui_settings_window_ctk_settingswindow",
       "target": "ui_history_window_ctk_rationale_903"
@@ -10392,7 +10509,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/notification.py",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "_src": "services_notification_py",
       "_tgt": "services_notification_notificationservice",
@@ -10404,7 +10521,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/notification.py",
-      "source_location": "L40",
+      "source_location": "L73",
       "weight": 1.0,
       "_src": "services_notification_py",
       "_tgt": "services_notification_send",
@@ -10416,7 +10533,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/notification.py",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_src": "services_notification_py",
       "_tgt": "services_notification_listening",
@@ -10428,7 +10545,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/notification.py",
-      "source_location": "L25",
+      "source_location": "L27",
       "weight": 1.0,
       "_src": "services_notification_py",
       "_tgt": "services_notification_transcribing",
@@ -10440,7 +10557,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/notification.py",
-      "source_location": "L30",
+      "source_location": "L32",
       "weight": 1.0,
       "_src": "services_notification_py",
       "_tgt": "services_notification_copied",
@@ -10452,12 +10569,48 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "services/notification.py",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0,
       "_src": "services_notification_py",
       "_tgt": "services_notification_failed",
       "source": "services_notification_py",
       "target": "services_notification_failed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/notification.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "services_notification_py",
+      "_tgt": "services_notification_close_current",
+      "source": "services_notification_py",
+      "target": "services_notification_close_current",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/notification.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_src": "services_notification_py",
+      "_tgt": "services_notification_send_replace",
+      "source": "services_notification_py",
+      "target": "services_notification_send_replace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "services/notification.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "_src": "services_notification_py",
+      "_tgt": "services_notification_build_command",
+      "source": "services_notification_py",
+      "target": "services_notification_build_command",
       "confidence_score": 1.0
     },
     {
@@ -10476,12 +10629,12 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "services/notification.py",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
-      "_src": "services_notification_rationale_9",
+      "_src": "services_notification_rationale_10",
       "_tgt": "services_notification_notificationservice",
       "source": "services_notification_notificationservice",
-      "target": "services_notification_rationale_9",
+      "target": "services_notification_rationale_10",
       "confidence_score": 1.0
     },
     {
@@ -10519,6 +10672,42 @@
       "confidence_score": 0.5,
       "source": "services_notification_notificationservice",
       "target": "services_clipboard_rationale_16"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "services/notification.py",
+      "source_location": "L81",
+      "weight": 1.0,
+      "_src": "services_notification_send",
+      "_tgt": "services_notification_send_replace",
+      "source": "services_notification_send",
+      "target": "services_notification_send_replace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "services/notification.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "_src": "services_notification_send",
+      "_tgt": "services_notification_build_command",
+      "source": "services_notification_send",
+      "target": "services_notification_build_command",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "services/notification.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "_src": "services_notification_send_replace",
+      "_tgt": "services_notification_build_command",
+      "source": "services_notification_send_replace",
+      "target": "services_notification_build_command",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",

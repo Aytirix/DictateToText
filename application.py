@@ -171,7 +171,7 @@ class DictatePTTApplication:
 
 	def _stop_recording_reminder(self) -> None:
 		"""Stop the toggle recording reminder."""
-		return
+		NotificationService.close_current()
 
 	def _show_history(self) -> None:
 		"""Show or focus history window (called on main thread)"""

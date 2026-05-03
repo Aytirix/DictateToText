@@ -1,12 +1,12 @@
-# Graph Report - py  (2026-05-02)
+# Graph Report - py  (2026-05-03)
 
 ## Corpus Check
-- 16 files · ~10,948 words
+- 16 files · ~11,123 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 387 nodes · 600 edges · 23 communities detected
-- Extraction: 68% EXTRACTED · 32% INFERRED · 0% AMBIGUOUS · INFERRED: 190 edges (avg confidence: 0.53)
+- 400 nodes · 606 edges · 31 communities detected
+- Extraction: 69% EXTRACTED · 31% INFERRED · 0% AMBIGUOUS · INFERRED: 190 edges (avg confidence: 0.53)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
@@ -33,6 +33,14 @@
 - [[_COMMUNITY_Community 20|Community 20]]
 - [[_COMMUNITY_Community 21|Community 21]]
 - [[_COMMUNITY_Community 22|Community 22]]
+- [[_COMMUNITY_Community 23|Community 23]]
+- [[_COMMUNITY_Community 24|Community 24]]
+- [[_COMMUNITY_Community 25|Community 25]]
+- [[_COMMUNITY_Community 26|Community 26]]
+- [[_COMMUNITY_Community 27|Community 27]]
+- [[_COMMUNITY_Community 28|Community 28]]
+- [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 30|Community 30]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `HistoryWindow` - 104 edges
@@ -62,11 +70,11 @@
 
 ### Community 0 - "Community 0"
 Cohesion: 0.03
-Nodes (52): HistoryWindow, Clear all history with confirmation, Schedule periodic status updates, Update transcription status indicator, Update history content with optional search, Update system statistics, Update GPU information - supports NVIDIA, AMD, Intel, Modern history window with CustomTkinter (+44 more)
+Nodes (60): _enable_mousewheel_scroll(), HistoryWindow, Enable mousewheel scrolling for a widget and all its children, Clear all history with confirmation, Schedule periodic status updates, Update transcription status indicator, Update history content with optional search, Update system statistics (+52 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.04
-Nodes (43): Clear all history with confirmation, Schedule periodic status updates, Update transcription status indicator, Update history content with optional search, Update system statistics, Update GPU information - supports NVIDIA, AMD, Intel, Toggle real-time logs, Start real-time log streaming (+35 more)
+Nodes (47): Clear all history with confirmation, Schedule periodic status updates, Update transcription status indicator, Update history content with optional search, Update system statistics, Update GPU information - supports NVIDIA, AMD, Intel, Toggle real-time logs, Start real-time log streaming (+39 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.04
@@ -86,111 +94,163 @@ Nodes (13): HistoryManager, History management component, Return a snapshot of i
 
 ### Community 6 - "Community 6"
 Cohesion: 0.11
-Nodes (12): ClipboardService, Handle clipboard operations, Copy text to clipboard using wl-copy, NotificationService, Handle system notifications, _clean_output(), _is_gpu_oom(), Transcription service using Whisper (+4 more)
+Nodes (15): ClipboardService, Handle clipboard operations, Copy text to clipboard using wl-copy, _build_command(), NotificationService, Handle system notifications, send(), _send_replace() (+7 more)
 
 ### Community 7 - "Community 7"
-Cohesion: 0.12
-Nodes (13): History window with CustomTkinter - Modern Design, _enable_mousewheel_scroll(), _format_key_combo(), _get_base_model_name(), _get_quantization_suffix(), _is_modifier_key(), _parse_key_combo(), Settings window with CustomTkinter - Modern Design (+5 more)
+Cohesion: 0.1
+Nodes (15): History window with CustomTkinter - Modern Design, _enable_mousewheel_scroll(), _format_key_combo(), _get_base_model_name(), _get_quantization_suffix(), _is_modifier_key(), _parse_key_combo(), Settings window with CustomTkinter - Modern Design (+7 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.14
-Nodes (8): _enable_mousewheel_scroll(), Enable mousewheel scrolling for a widget and all its children, Refresh the list of audio files, Delete a single audio file, Delete all audio files, Update window title with history size, Add the audio files tab dynamically, Setup the modern user interface
-
-### Community 9 - "Community 9"
-Cohesion: 0.17
-Nodes (6): Show Whisper models management, Return models supported by the local whisper.cpp install, plus installed files., Sort current and installed models first, then keep whisper.cpp order., Select a different Whisper model, Download a Whisper model, Uninstall a Whisper model
-
-### Community 10 - "Community 10"
 Cohesion: 1.0
 Nodes (1): Send a system notification without blocking
 
-### Community 11 - "Community 11"
+### Community 9 - "Community 9"
 Cohesion: 1.0
 Nodes (1): Show persistent listening notification.
 
-### Community 12 - "Community 12"
+### Community 10 - "Community 10"
 Cohesion: 1.0
 Nodes (1): Show persistent transcribing notification.
 
-### Community 13 - "Community 13"
+### Community 11 - "Community 11"
 Cohesion: 1.0
 Nodes (1): Show short success notification.
 
-### Community 14 - "Community 14"
+### Community 12 - "Community 12"
 Cohesion: 1.0
 Nodes (1): Show short error notification.
 
-### Community 15 - "Community 15"
+### Community 13 - "Community 13"
+Cohesion: 1.0
+Nodes (1): Close the currently tracked notification when the server supports it.
+
+### Community 14 - "Community 14"
 Cohesion: 1.0
 Nodes (1): Send a notification, optionally replacing the previous app notification.
 
+### Community 15 - "Community 15"
+Cohesion: 1.0
+Nodes (1): Send a replacing notification and return its fresh ID.
+
 ### Community 16 - "Community 16"
 Cohesion: 1.0
-Nodes (1): Run whisper-cli and handle timeouts.
+Nodes (1): Build the notify-send command.
 
 ### Community 17 - "Community 17"
 Cohesion: 1.0
-Nodes (1): Return True when whisper.cpp failed because CUDA ran out of memory.
+Nodes (1): Run whisper-cli and handle timeouts.
 
 ### Community 18 - "Community 18"
 Cohesion: 1.0
-Nodes (1): Keyboard event loop (runs in daemon thread)
+Nodes (1): Return True when whisper.cpp failed because CUDA ran out of memory.
 
 ### Community 19 - "Community 19"
 Cohesion: 1.0
-Nodes (1): Show or focus history window (called on main thread)
+Nodes (1): Handle system notifications
 
 ### Community 20 - "Community 20"
 Cohesion: 1.0
-Nodes (1): Validate configuration paths
+Nodes (1): Send a system notification without blocking
 
 ### Community 21 - "Community 21"
 Cohesion: 1.0
-Nodes (1): Update logs widget from queue (called from main thread)
+Nodes (1): Show persistent listening notification.
 
 ### Community 22 - "Community 22"
+Cohesion: 1.0
+Nodes (1): Show persistent transcribing notification.
+
+### Community 23 - "Community 23"
+Cohesion: 1.0
+Nodes (1): Show short success notification.
+
+### Community 24 - "Community 24"
+Cohesion: 1.0
+Nodes (1): Show short error notification.
+
+### Community 25 - "Community 25"
+Cohesion: 1.0
+Nodes (1): Send a notification, optionally replacing the previous app notification.
+
+### Community 26 - "Community 26"
+Cohesion: 1.0
+Nodes (1): Keyboard event loop (runs in daemon thread)
+
+### Community 27 - "Community 27"
+Cohesion: 1.0
+Nodes (1): Show or focus history window (called on main thread)
+
+### Community 28 - "Community 28"
+Cohesion: 1.0
+Nodes (1): Validate configuration paths
+
+### Community 29 - "Community 29"
+Cohesion: 1.0
+Nodes (1): Update logs widget from queue (called from main thread)
+
+### Community 30 - "Community 30"
 Cohesion: 1.0
 Nodes (1): Send a system notification without blocking
 
 ## Knowledge Gaps
-- **116 isolated node(s):** `Keyboard event loop (runs in daemon thread)`, `Show or focus history window (called on main thread)`, `Parse a DISPLAY value like :1 or :1.0 into its numeric display id.`, `Gestionnaire de configuration`, `Charge la configuration depuis le fichier JSON` (+111 more)
+- **126 isolated node(s):** `Keyboard event loop (runs in daemon thread)`, `Show or focus history window (called on main thread)`, `Parse a DISPLAY value like :1 or :1.0 into its numeric display id.`, `Gestionnaire de configuration`, `Charge la configuration depuis le fichier JSON` (+121 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 10`** (1 nodes): `Send a system notification without blocking`
+- **Thin community `Community 8`** (1 nodes): `Send a system notification without blocking`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 11`** (1 nodes): `Show persistent listening notification.`
+- **Thin community `Community 9`** (1 nodes): `Show persistent listening notification.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 12`** (1 nodes): `Show persistent transcribing notification.`
+- **Thin community `Community 10`** (1 nodes): `Show persistent transcribing notification.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 13`** (1 nodes): `Show short success notification.`
+- **Thin community `Community 11`** (1 nodes): `Show short success notification.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 14`** (1 nodes): `Show short error notification.`
+- **Thin community `Community 12`** (1 nodes): `Show short error notification.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 15`** (1 nodes): `Send a notification, optionally replacing the previous app notification.`
+- **Thin community `Community 13`** (1 nodes): `Close the currently tracked notification when the server supports it.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 16`** (1 nodes): `Run whisper-cli and handle timeouts.`
+- **Thin community `Community 14`** (1 nodes): `Send a notification, optionally replacing the previous app notification.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 17`** (1 nodes): `Return True when whisper.cpp failed because CUDA ran out of memory.`
+- **Thin community `Community 15`** (1 nodes): `Send a replacing notification and return its fresh ID.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 18`** (1 nodes): `Keyboard event loop (runs in daemon thread)`
+- **Thin community `Community 16`** (1 nodes): `Build the notify-send command.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 19`** (1 nodes): `Show or focus history window (called on main thread)`
+- **Thin community `Community 17`** (1 nodes): `Run whisper-cli and handle timeouts.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (1 nodes): `Validate configuration paths`
+- **Thin community `Community 18`** (1 nodes): `Return True when whisper.cpp failed because CUDA ran out of memory.`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (1 nodes): `Update logs widget from queue (called from main thread)`
+- **Thin community `Community 19`** (1 nodes): `Handle system notifications`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (1 nodes): `Send a system notification without blocking`
+- **Thin community `Community 20`** (1 nodes): `Send a system notification without blocking`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 21`** (1 nodes): `Show persistent listening notification.`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 22`** (1 nodes): `Show persistent transcribing notification.`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 23`** (1 nodes): `Show short success notification.`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 24`** (1 nodes): `Show short error notification.`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 25`** (1 nodes): `Send a notification, optionally replacing the previous app notification.`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 26`** (1 nodes): `Keyboard event loop (runs in daemon thread)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 27`** (1 nodes): `Show or focus history window (called on main thread)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 28`** (1 nodes): `Validate configuration paths`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 29`** (1 nodes): `Update logs widget from queue (called from main thread)`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 30`** (1 nodes): `Send a system notification without blocking`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HistoryWindow` connect `Community 0` to `Community 1`, `Community 3`, `Community 4`, `Community 7`, `Community 8`, `Community 9`?**
-  _High betweenness centrality (0.538) - this node is a cross-community bridge._
+- **Why does `HistoryWindow` connect `Community 0` to `Community 1`, `Community 3`, `Community 4`, `Community 7`?**
+  _High betweenness centrality (0.511) - this node is a cross-community bridge._
 - **Why does `DictatePTTApplication` connect `Community 4` to `Community 2`, `Community 6`?**
-  _High betweenness centrality (0.398) - this node is a cross-community bridge._
-- **Why does `SettingsWindow` connect `Community 1` to `Community 0`, `Community 3`, `Community 7`, `Community 8`, `Community 9`?**
-  _High betweenness centrality (0.302) - this node is a cross-community bridge._
+  _High betweenness centrality (0.382) - this node is a cross-community bridge._
+- **Why does `SettingsWindow` connect `Community 1` to `Community 0`, `Community 3`, `Community 7`?**
+  _High betweenness centrality (0.284) - this node is a cross-community bridge._
 - **Are the 74 inferred relationships involving `HistoryWindow` (e.g. with `SettingsWindow` and `Settings window with CustomTkinter - Modern Design`) actually correct?**
   _`HistoryWindow` has 74 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 43 inferred relationships involving `SettingsWindow` (e.g. with `HistoryWindow` and `History window with CustomTkinter - Modern Design`) actually correct?**
